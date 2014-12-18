@@ -11,7 +11,7 @@
 
 % Darbo apiforminimas pagal Vilniaus universiteto
 % Matematikos ir informatikos fakulteto Programų sistemų katedros reikalavimus
-\ProvidesPackage{VUMIFPSbakalaurinis}[2015/01/01 1.0 VU MIF PS course Style]
+\ProvidesPackage{VUMIFPSbakalaurinis}[2015/01/01 1.0 VU MIF PS bachelor Style]
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage{setspace}
@@ -256,3 +256,12 @@
 \stepcounter{tocdepth}
 
 \renewcommand{\paragraph}{\subparagraph}
+
+% Turinio skyrių indentavimo nustatymas. Kiekvienam skyriui nustatoma:
+% 1. Atitraukimo iš kairės plotis
+% 2. Vietos, skiriama skaičiams, plotis
+\makeatletter
+  \renewcommand*\l@subsection{\@dottedtocline{2}{0.1cm}{0.87cm}}
+  \renewcommand*\l@subsubsection{\@dottedtocline{3}{0.8cm}{1.22cm}}
+  \renewcommand*\l@paragraph{\@dottedtocline{4}{1.5cm}{1.52cm}}
+\makeatother
