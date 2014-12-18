@@ -16,7 +16,6 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage{setspace}
 \setstretch{1.4}
-% \renewcommand*\rmdefault{ppl} % 'Serif' šriftas visame dokumente (Palatino)  
 \sloppy  % Tolygiai paskirsto tekstą nuo kairės iki dešinės paraštės'
 
 % Titulinio puslapio variantas
@@ -69,6 +68,7 @@
 
 % Lapo formato nurodymas, vėliau nurodysime ir paraštes
 \RequirePackage{vmargin}
+\setmarginsrb{3cm}{2cm}{1.5cm}{1.5cm}{0pt}{0pt}{0pt}{5mm}%
 \setpapersize[portrait]{A4}
 
 % Mums reikės 1,5 intervalo tarp eilučių
@@ -103,7 +103,7 @@
   \vumifchecktitle{@supervisor}%
     {Tituliniame puslapyje nenurodytas darbo vadovas (komanda \protect\supervisor)}
 
-  \setmargnohfrb{30mm}{52mm}{30mm}{35mm}
+  ~\vspace{1cm} 
   \begin{center}
           {\large VILNIAUS UNIVERSITETAS \\
         MATEMATIKOS IR INFORMATIKOS FAKULTETAS \\
@@ -141,13 +141,8 @@
   % Nustatome dokumentui 1,5 eilutės intervalą
   \onehalfspacing
 }
-
-% 'Turinys' centruotas ir pagrindinio teksto šrifto bei dydžio
+ 
 \renewcommand\tableofcontents{%
-    % Visame dokumente už titulinio lapo:
-    % Viršutinė paraštė 3 cm, apatinė paraštė 2 cm,
-    % kairė paraštė 3 cm, dešinė paraštė ne mažiau 1 cm.
-    \setmarginsrb{3cm}{3cm}{1cm}{2cm}{12pt}{20pt}{0pt}{0mm}%
     \pagestyle{plain}%
     % Turinys su viengubu intervalu tarp eilučių
     \begin{singlespacing}%
@@ -183,7 +178,7 @@
      \hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
     \endgroup
   \fi}
-
+ 
 % Sekcija pradeda naują puslapį
 \renewcommand{\section}{%
     \cleardoublepage%
@@ -197,10 +192,10 @@
 \def\ps@plain{%
     \renewcommand{\@oddhead}{}%
     \renewcommand{\@evenhead}{}%
-    \renewcommand{\@evenfoot}{\hfill\textrm{\thepage}\hspace{1cm}}%
+    \renewcommand{\@evenfoot}{\hfill\textrm{\thepage}}%
     \renewcommand{\@oddfoot}{\@evenfoot}%
 }
-
+ 
 % Priedo sekcijų formatavimas turiniui
 \renewcommand{\appendix}{%
     \renewcommand{\section}{%
