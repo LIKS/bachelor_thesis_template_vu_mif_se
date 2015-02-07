@@ -1,0 +1,413 @@
+\ProvidesFile{lithuanian.lbx}
+[\abx@lbxid $Id: lithuanian.lbx,v 1.0 2015/02/05 20:21:28 niekas stable $]
+
+\DeclareBibliographyStrings{%
+  bibliography     = {{Bibliografija}{Bibliografija}},
+  references       = {{Literatūra}{Literatūra}},
+  shorthands       = {{Santrumpų sąrašas}{Santrumpos}},
+  editor           = {{redaktorius}{red\adddot}},
+  editors          = {{redaktoriai}{red\adddot}},
+  compiler         = {{kompiliatorius}{komp\adddot}},
+  compilers        = {{kompiliatoriai}{komp\adddot}},
+  redactor         = {{redaktorius}{red\adddot}},
+  redactors        = {{redaktoriai}{red\adddot}},
+  reviser          = {{recenzentas}{rec\adddot}},
+  revisers         = {{recenzentai}{rec\adddot}},
+  founder          = {{įkūrėjas}{įkur\adddot}},
+  founders         = {{įkūrėjai}{įkur\adddot}},
+  continuator      = {{tęstinis}{tęst\adddot}},% FIXME: unsure
+  continuators     = {{tęstinis}{tęst\adddot}},% FIXME: unsure
+  collaborator     = {{bendradarbis}{bendr\adddot}},% FIXME: unsure
+  collaborators    = {{bendradarbiai}{bendr\adddot}},% FIXME: unsure
+  translator       = {{vertėjas}{vert\adddot}},
+  translators      = {{vertėjai}{vert\adddot}},
+  commentator      = {{komentatorius}{koment\adddot}},
+  commentators     = {{komentatoriai}{koment\adddot}},
+  annotator        = {{anotuotojas}{anot\adddot}},
+  annotators       = {{anotuotojai}{anot\adddot}},
+  commentary       = {{komentaras}{koment\adddot}},
+  annotations      = {{anotacijos}{anot\adddot}},
+  introduction     = {{įvadas}{įvad\adddot}},
+  foreword         = {{pratarmė}{prat\adddot}},
+  afterword        = {{epilogas}{epil\adddot}},
+  editortr         = {{redaktorius ir vertėjas}%
+                      {red\adddotspace ir vert\adddot}},
+  editorstr        = {{redaktoriai ir vertėjai}%
+                      {red\adddotspace ir vert\adddot}},
+  editorco         = {{redaktorius ir komentatorius}%
+                      {red\adddotspace ir koment\adddot}},
+  editorsco        = {{redaktoriai ir kompiliatoriai}%
+                      {red\adddotspace ir koment\adddot}},
+  editoran         = {{redaktorius ir anotuotojas}%
+                      {red\adddotspace ir anot\adddot}},
+  editorsan        = {{redaktoriai ir anotuotojai}%
+                      {red\adddotspace ir anot\adddot}},
+  editorin         = {{redaktorius ir įvadas}%
+                      {red\adddotspace ir įvad\adddot}},
+  editorsin        = {{redaktoriai ir įvadas}%
+                      {red\adddotspace ir įvad\adddot}},
+  editorfo         = {{redaktorius ir pratarmė}%
+                      {red\adddotspace ir prat\adddot}},
+  editorsfo        = {{redaktoriai ir pratarmė}%
+                      {red\adddotspace ir prat\adddot}},
+  editoraf         = {{redaktorius ir epilogas}%
+                      {red\adddotspace ir epil\adddot}},
+  editorsaf        = {{redaktoriai ir epilogas}%
+                      {red\adddotspace ir epil\adddot}},
+  editortrco       = {{redaktorius, vertėjas\ ir komentatorius}%
+                      {red.,\addabbrvspace vert\adddot\ ir koment\adddot}},
+  editorstrco      = {{redaktoriai, vertėjai\ ir komentatoriai}%
+                      {red.,\addabbrvspace vert\adddot\ ir koment\adddot}},
+  editortran       = {{redaktorius, vertėjas\ ir anotuotojas}%
+                      {red.,\addabbrvspace vert\adddot\ ir anot\adddot}},
+  editorstran      = {{redaktoriai, vertėjai\ ir anotuotojai}%
+                      {red.,\addabbrvspace vert\adddot\ ir anot\adddot}},
+  editortrin       = {{redaktorius, vertėjas\ ir įvadas}%
+                      {red.,\addabbrvspace vert\adddot\ ir įvad\adddot}},
+  editorstrin      = {{redaktoriai, vertėjai\ ir įvadas}%
+                      {red.,\addabbrvspace vert\adddot\ ir įvad\adddot}},
+  editortrfo       = {{redaktorius, vertėjas\ ir pratarmė}%
+                      {red.,\addabbrvspace vert\adddot\ ir prat\adddot}},
+  editorstrfo      = {{redaktoriai, vertėjai\ ir pratarmė}%
+                      {red.,\addabbrvspace vert\adddot\ ir prat\adddot}},
+  editortraf       = {{redaktorius, vertėjas\ ir epilogas}%
+                      {red.,\addabbrvspace vert\adddot\ ir epil\adddot}},
+  editorstraf      = {{redaktoriai, vertėjai\ ir epilogas}%
+                      {red.,\addabbrvspace vert\adddot\ ir epil\adddot}},
+  editorcoin       = {{redaktorius, komentatorius\ ir įvadas}%
+                      {red.,\addabbrvspace koment\adddot\ ir įvad\adddot}},
+  editorscoin      = {{redaktoriai, komentatoriai\ ir įvadas}%
+                      {red.,\addabbrvspace koment\adddot\ ir įvad\adddot}},
+  editorcofo       = {{redaktorius, komentatorius\ ir pratarmė}%
+                      {red.,\addabbrvspace koment\adddot\ ir prat\adddot}},
+  editorscofo      = {{redaktoriai, komentatoriai\ ir pratarmė}%
+                      {red.,\addabbrvspace koment\adddot\ ir prat\adddot}},
+  editorcoaf       = {{redaktorius, komentatorius\ ir epilogas}%
+                      {red.,\addabbrvspace koment\adddot\ ir epil\adddot}},
+  editorscoaf      = {{redaktoriai, komentatoriai\ ir epilogas}%
+                      {red.,\addabbrvspace koment\adddot\ ir epil\adddot}},
+  editoranin       = {{redaktorius, anotuotojas\ ir įvadas}%
+                      {red.,\addabbrvspace anot\adddot\ ir įvad\adddot}},
+  editorsanin      = {{redaktoriai, anotuotojai\ ir įvadas}%
+                      {red.,\addabbrvspace anot\adddot\ ir įvad\adddot}},
+  editoranfo       = {{redaktorius, anotuotojas\ ir pratarmė}%
+                      {red.,\addabbrvspace anot\adddot\ ir prat\adddot}},
+  editorsanfo      = {{redaktoriai, anotuotojai\ ir pratarmė}%
+                      {red.,\addabbrvspace anot\adddot\ ir prat\adddot}},
+  editoranaf       = {{redaktorius, anotuotojas\ ir epilogas}%
+                      {red.,\addabbrvspace anot\adddot\ ir epil\adddot}},
+  editorsanaf      = {{redaktoriai, anotuotojai\ ir epilogas}%
+                      {red.,\addabbrvspace anot\adddot\ ir epil\adddot}},
+  editortrcoin     = {{redaktorius, vertėjas, komentatorius\ ir įvadas}%
+                      {red.,\addabbrvspace vert., koment\adddot\ ir įvad\adddot}},
+  editorstrcoin    = {{redaktoriai, vertėjai, komentatoriai\ ir įvadas}%
+                      {red.,\addabbrvspace vert., koment\adddot\ ir įvad\adddot}},
+  editortrcofo     = {{redaktorius, vertėjas, komentatorius\ ir pratarmė}%
+                      {red.,\addabbrvspace vert., koment\adddot\ ir prat\adddot}},
+  editorstrcofo    = {{redaktoriai, vertėjai, komentatoriai\ ir pratarmė}%
+                      {red.,\addabbrvspace vert., koment\adddot\ ir prat\adddot}},
+  editortrcoaf     = {{redaktorius, vertėjas, komentatorius\ ir epilogas}%
+                      {red.,\addabbrvspace vert., koment\adddot\ ir epil\adddot}},
+  editorstrcoaf    = {{redaktoriai, vertėjai, komentatoriai\ ir epilogas}%
+                      {red.,\addabbrvspace vert., koment\adddot\ ir epil\adddot}},
+  editortranin     = {{redaktorius, vertėjas, anotuotojas\ ir įvadas}%
+                      {red.,\addabbrvspace vert., anot\adddot\ ir įvad\adddot}},
+  editorstranin    = {{redaktoriai, vertėjai, anotuotojai\ ir įvadas}%
+                      {red.,\addabbrvspace vert., anot\adddot\ ir įvad\adddot}},
+  editortranfo     = {{redaktorius, vertėjas, anotuotojas\ ir pratarmė}%
+                      {red.,\addabbrvspace vert., anot\adddot\ ir prat\adddot}},
+  editorstranfo    = {{redaktoriai, vertėjai, anotuotojai\ ir pratarmė}%
+                      {red.,\addabbrvspace vert., anot\adddot\ ir prat\adddot}},
+  editortranaf     = {{redaktorius, vertėjas, anotuotojas\ ir epilogas}%
+                      {red.,\addabbrvspace vert., anot\adddot\ ir epil\adddot}},
+  editorstranaf    = {{redaktoriai, vertėjai, anotuotojai\ ir epilogas}%
+                      {red.,\addabbrvspace vert., anot\adddot\ ir epil\adddot}},
+  translatorco     = {{vertėjas ir komentatorius}%
+                      {vert\adddot\ ir koment\adddot}},
+  translatorsco    = {{vertėjai ir komentatoriai}%
+                      {vert\adddot\ ir koment\adddot}},
+  translatoran     = {{vertėjas ir anotuotojas}%
+                      {vert\adddot\ ir anot\adddot}},
+  translatorsan    = {{vertėjai ir anotuotojai}%
+                      {vert\adddot\ ir anot\adddot}},
+  translatorin     = {{vertimas ir įvadas}%
+                      {vert\adddot\ ir įvad\adddot}},
+  translatorsin    = {{vertimas ir įvadas}%
+                      {vert\adddot\ ir įvad\adddot}},
+  translatorfo     = {{vertimas ir pratarmė}%
+                      {vert\adddot\ ir prat\adddot}},
+  translatorsfo    = {{vertimas ir pratarmė}%
+                      {vert\adddot\ ir prat\adddot}},
+  translatoraf     = {{vertimas ir epilogas}%
+                      {vert\adddot\ ir epil\adddot}},
+  translatorsaf    = {{vertimas ir epilogas}%
+                      {vert\adddot\ ir epil\adddot}},
+  translatorcoin   = {{vertimas, komentaras\ ir įvadas}%
+                      {vert., koment\adddot\ ir įvad\adddot}},
+  translatorscoin  = {{vertimas, komentaras\ ir įvadas}%
+                      {vert., koment\adddot\ ir įvad\adddot}},
+  translatorcofo   = {{vertimas, komentaras\ ir pratarmė}%
+                      {vert., koment\adddot\ ir prat\adddot}},
+  translatorscofo  = {{vertimas, komentaras\ ir pratarmė}%
+                      {vert., koment\adddot\ ir prat\adddot}},
+  translatorcoaf   = {{vertimas, komentaras\ ir epilogas}%
+                      {vert., koment\adddot\ ir epil\adddot}},
+  translatorscoaf  = {{vertimas, komentaras\ ir epilogas}%
+                      {vert., koment\adddot\ ir epil\adddot}},
+  translatoranin   = {{vertimas, anotacijos\ ir įvadas}%
+                      {vert., anot\adddot\ ir įvad\adddot}},
+  translatorsanin  = {{vertimas, anotacijos\ ir įvadas}%
+                      {vert., anot\adddot\ ir įvad\adddot}},
+  translatoranfo   = {{vertimas, anotacijos\ ir pratarmė}%
+                      {vert., anot\adddot\ ir prat\adddot}},
+  translatorsanfo  = {{vertimas, anotacijos\ ir pratarmė}%
+                      {vert., anot\adddot\ ir prat\adddot}},
+  translatoranaf   = {{vertimas, anotacijos\ ir epilogas}%
+                      {vert., anot\adddot\ ir epil\adddot}},
+  translatorsanaf  = {{vertimas, anotacijos\ ir epilogas}%
+                      {vert., anot\adddot\ ir epil\adddot}},
+  byauthor         = {{autorius}{autorius}},
+  byeditor         = {{redagavo}{red\adddotspace}},
+  bycompiler       = {{kompiliavo}{komp\adddotspace}},
+  byredactor       = {{redagavo}{red\adddotspace}},
+  byreviser        = {{tikrino}{tikr\adddotspace}},
+  byreviewer       = {{recenzavo}{rec\adddotspace}},
+  byfounder        = {{įkūrė}{įkūr\adddotspace}},
+  bycontinuator    = {{pratęsė}{tęs\adddotspace}},
+  bycollaborator   = {{bendradarbiaujant su}{bendradarb\adddotspace su}},% FIXME: unsure
+  bytranslator     = {{išvertė \lbx@lfromlang}{vert\adddot\ \lbx@sfromlang}},
+  bycommentator    = {{komentavo}{koment\adddot}},
+  byannotator      = {{anotavo}{anot\adddot}},
+  withcommentator  = {{su komentaru, kurio autorius}{su koment\adddot, kurio aut.}},
+  withannotator    = {{su anotacijomis, kurių autorius}{su anot\adddot, kurių aut.}},
+  withintroduction = {{su įvadu, kurio autorius}{su įvad\adddot, kurio aut.}},
+  withforeword     = {{su pratarme, kurios autorius}{su prat\adddot, kurios aut.}},
+  withafterword    = {{su epilogu, kurio autorius}{su epil\adddot, kurio aut.}},
+  byeditortr       = {{redagavo ir vertė \lbx@lfromlang}%
+                      {red\adddotspace ir vert\adddot\ \lbx@sfromlang}},
+  byeditorco       = {{redagavo ir komentavo}%
+                      {red\adddotspace ir koment\adddot}},
+  byeditoran       = {{redagavo ir anotavo}%
+                      {red\adddotspace ir anot\adddot}},
+  byeditorin       = {{redagavo, su įvadu, kurio autorius}%
+                      {red.,\addabbrvspace su įvad., kurio aut.}},
+  byeditorfo       = {{redagavo, su pratarme, kurio autorius}%
+                      {red.,\addabbrvspace su prat., kurios aut.}},
+  byeditoraf       = {{redagavo, su epilogu, kurio autorius}%
+                      {red.,\addabbrvspace su epilogu, kurio aut.}},
+  byeditortrco     = {{redagavo, vertė \lbx@lfromlang\ ir komentavo}%
+                      {red.,\addabbrvspace vert\adddot\ \lbx@sfromlang\ ir koment\adddot}},
+  byeditortran     = {{redagavo, vertė \lbx@lfromlang\ ir anotavo}%
+                      {red.,\addabbrvspace vert\adddot\ \lbx@sfromlang\ ir anot\adddot}},
+  byeditortrin     = {{redagavo ir vertė \lbx@lfromlang, su įvadu, kurio autorius}%
+                      {red\adddotspace ir vertė\ \lbx@sfromlang, su įvadu, kurio aut.}},
+  byeditortrfo     = {{redagavo ir vertė \lbx@lfromlang, su pratarme, kurios autorius}%
+                      {red. ir vertė\ \lbx@sfromlang, su pratarme, kurios aut.}},
+  byeditortraf     = {{redagavo ir vertė \lbx@lfromlang, su epilogu, kurio autorius}%
+                      {red\adddotspace ir vertė\ \lbx@sfromlang, su epilogu, kurio aut.}},
+  byeditorcoin     = {{redagavo ir komentavo, su įvadu, kurio autorius}%
+                      {red\adddotspace ir koment., su įvadu, kurio aut.}},
+  byeditorcofo     = {{redagavo ir komentavo, su pratarme, kurios autorius}%
+                      {red\adddotspace ir koment., su prat., kurios aut.}},
+  byeditorcoaf     = {{redagavo ir komentavo, su epilogu, kurio autorius}%
+                      {red\adddotspace ir koment., su epil., kurio aut.}},
+  byeditoranin     = {{redagavo ir anotavo, su įvadu, kurio autorius}%
+                      {red\adddotspace ir anot., su įvadu, kurio aut.}},
+  byeditoranfo     = {{redagavo ir anotavo, su pratarme, kurios autorius}%
+                      {red\adddotspace ir anot., su prat., kurios autorius}},
+  byeditoranaf     = {{redagavo ir anotavo, su epilogu, kurio autorius}%
+                      {red\adddotspace ir anot., su epil., kurio autorius}},
+  byeditortrcoin   = {{redagavo, vertė \lbx@lfromlang\ ir komentavo, su įvadu, kurio autorius}%
+                      {red.,\addabbrvspace vert\adddot\ \lbx@sfromlang\ ir koment., su įvad., kurio aut.}},
+  byeditortrcofo   = {{redagavo, vertė \lbx@lfromlang\ ir komentavo, su pratarme, kurios autorius}%
+                      {red.,\addabbrvspace vert\adddot\ \lbx@sfromlang\ ir koment., su prat., kurios aut.}},
+  byeditortrcoaf   = {{redagavo, vertė \lbx@lfromlang\ ir komentavo, su epilogu, kurio autorius}%
+                      {red.,\addabbrvspace vert\adddot\ \lbx@sfromlang\ ir koment., su epil., kurio aut.}},
+  byeditortranin   = {{redagavo, vertė \lbx@lfromlang\ ir anotavo, su įvadu, kurio autorius}%
+                      {red.,\addabbrvspace vertė\ \lbx@sfromlang\ ir anot., su įvad., kurio aut.}},
+  byeditortranfo   = {{redagavo, vertė \lbx@lfromlang\ ir anotavo, su pratarme, kurios autorius}%
+                      {red.,\addabbrvspace vert\adddot\ \lbx@sfromlang\ ir anot., su prat., kurios autorius}},
+  byeditortranaf   = {{redagavo, vertė \lbx@lfromlang\ ir anotavo, su epilogu, kurio autorius}%
+                      {red.,\addabbrvspace vertė\ \lbx@sfromlang\ ir anot., su epil., kurio aut.}},
+  bytranslatorco   = {{vertė \lbx@lfromlang\ ir komentavo}%
+                      {vert\adddot\ \lbx@sfromlang\ ir koment\adddot}},
+  bytranslatoran   = {{vertė \lbx@lfromlang\ ir anotavo}%
+                      {vert\adddot\ \lbx@sfromlang\ ir anot\adddot}},
+  bytranslatorin   = {{vertė \lbx@lfromlang, su įvadu, kurio autorius}%
+                      {vertė\ \lbx@sfromlang, su įvadu, kurio aut.}},
+  bytranslatorfo   = {{vertė \lbx@lfromlang, su pratarme, kurios autorius}%
+                      {vertė \lbx@sfromlang, su prat., kurios autorius}},
+  bytranslatoraf   = {{vertė \lbx@lfromlang, su epilogu, kurio autorius}%
+                      {vertė\ \lbx@sfromlang, su epil., kurio aut.}},
+  bytranslatorcoin = {{vertė \lbx@lfromlang\ ir komentavo, su įvadu, kurio autorius}%
+                      {vertė\ \lbx@sfromlang\ ir koment., su įvadu, kurio aut.}},
+  bytranslatorcofo = {{vertė \lbx@lfromlang\ ir komentavo, su pratarme, kurios autorius}%
+                      {vertė\ \lbx@sfromlang\ ir koment., su prat., kurios aut.}},
+  bytranslatorcoaf = {{vertė \lbx@lfromlang\ ir komentavo, su epilogu, kurio autorius}%
+                      {vertė\ \lbx@sfromlang\ ir koment., su epil., kurio aut.}},
+  bytranslatoranin = {{vertė \lbx@lfromlang\ ir anotavo, su įvadu, kurio autorius}%
+                      {vertė \lbx@sfromlang\ ir anot., su įvadu, kurio aut.}},
+  bytranslatoranfo = {{vertė \lbx@lfromlang\ ir anotavo, su pratarme, kurios autorius}%
+                      {vertė \lbx@sfromlang\ ir anot., su prat., kurios aut.}},
+  bytranslatoranaf = {{vertė \lbx@lfromlang\ ir anotavo, su epilogu, kurio autorius}%
+                      {vertė \lbx@sfromlang\ ir anot., su epil., kurio aut.}}, %
+  and              = {{ir}{ir}},
+  andothers        = {{ir k\adddot t\adddot}{ir k\adddot t\adddot}},
+  andmore          = {{ir k\adddot t\adddot}{ir k\adddot t\adddot}},
+  volume           = {{tomas}{tom\adddot}},
+  volumes          = {{tomai}{tom\adddot}},
+  jourvol          = {{tomas}{tom\adddot}},
+  jourser          = {{serija}{ser\adddot}},
+  book             = {{knyga}{knyga}},
+  part             = {{dalis}{dalis}},
+  issue            = {{numeris}{numeris}},
+  newseries        = {{naujas serija}{nauj. ser\adddot}},
+  oldseries        = {{senas serija}{sen. ser\adddot}},
+  edition          = {{leidimas}{leid\adddot}},
+  reprint          = {{naujas leidimas}{repr\adddot}},
+  reprintof        = {{naujas leidimas}{repr\adddotspace of}},
+  reprintas        = {{naujas leidimas kaip}{rpt\adddotspace as}},
+  reprintfrom      = {{naujas leidimas iš}{repr\adddotspace from}},
+  reviewof         = {{recenzija}{rev\adddotspace of}},
+  translationof    = {{vertimas}{trans\adddotspace of}},
+  translationas    = {{išversta kaip}{trans\adddotspace as}},
+  translationfrom  = {{vertimas iš}{trans\adddotspace from}},
+  origpubas        = {{originaliai išleido kaip}{orig\adddotspace pub\adddotspace as}},
+  origpubin        = {{originaliai išleista}{orig\adddotspace pub\adddotspace in}},
+  astitle          = {{pavadinimu}{pavadinimu}},
+  bypublisher      = {{}{}},
+  page             = {{puslapis}{p\adddot}},
+  pages            = {{puslapiai}{p\adddot}},
+  column           = {{stulpelis}{stulp\adddot}},
+  columns          = {{stulpeliai}{stulp\adddot}},
+  line             = {{eilutė}{eil\adddot}},
+  lines            = {{eilutės}{eil\adddot}},
+  nodate           = {{data nenurodyta}{data nenurod.\adddot}},
+  verse            = {{eilutė}{eil\adddot}},
+  verses           = {{eilutės}{eil\adddot}},
+  section          = {{sekcija}{\S}},
+  sections         = {{sekcijos}{\S\S}},
+  paragraph        = {{pastraipa}{pastr\adddot}},
+  paragraphs       = {{pastraipos}{pastr\adddot}},
+  in               = {{}{}},
+  inseries         = {{}{}},
+  ofseries         = {{}{}},
+  number           = {{numeris}{nr\adddot}},
+  chapter          = {{skyrius}{skyr\adddot}},
+  mathesis         = {{magistrinis darbas}{magistrinis darbas}},
+  phdthesis        = {{disertacija}{disertacija}},
+  candthesis       = {{disertacijos rankraštis}{disertacijos rankr.}},
+  resreport        = {{mokslinė ataskaita}{mokslinė atask\adddot}},
+  techreport       = {{techninė ataskaita}{tech\adddotspace atask\adddot}},
+  software         = {{programinė įranga}{PĮ}},
+  datacd           = {{CD-ROM}{CD-ROM}},
+  audiocd          = {{audio CD}{audio CD}},
+  version          = {{versija}{versija}},
+  url              = {{nuoroda}{nuoroda}},
+  urlfrom          = {{pasiekiamas per}{pasiekiamas per}},
+  urlseen          = {{tikrinta}{tikrinta}},
+  inpreparation    = {{prezentacijoje}{prezentacijoje}},
+  submitted        = {{pateikta}{pateikta}},
+  forthcoming      = {{būsimas}{būsimas}},
+  inpress          = {{spaudoje}{spaudoje}},
+  prepublished     = {{iš anksto paskelbtas}{iš anksto paskelbtas}},
+  citedas          = {{nuo šiol cituojamas kaip}{nuo šiol cituojamas kaip}},
+  thiscite         = {{ypatingai}{ypatingai}},
+  seenote          = {{žiūrėti pastabą}{žr. past\adddot}},
+  quotedin         = {{cituota}{cituota}},
+  idem             = {{tas pats}{tas pats}},
+  idemsm           = {{tas pats}{tas pats}},
+  idemsf           = {{ta pati}{ta pati}},
+  idemsn           = {{tas pats}{tas pats}},
+  idempm           = {{tas pats}{tas pats}},
+  idempf           = {{ta pati}{ta pati}},
+  idempn           = {{ta pati}{ta pati}},
+  idempp           = {{tas pats}{tas pats}},
+  ibidem           = {{ten pat}{ten pat}},
+  opcit            = {{op\adddotspace cit\adddot}{op\adddotspace cit\adddot}},
+  loccit           = {{loc\adddotspace cit\adddot}{loc\adddotspace cit\adddot}},
+  confer           = {{cf\adddot}{cf\adddot}},
+  sequens          = {{sq\adddot}{sq\adddot}},
+  sequentes        = {{sqq\adddot}{sqq\adddot}},
+  passim           = {{passim}{pass\adddot}},
+  see              = {{žr.}{žr.}},
+  seealso          = {{taip pat žiūrėti}{taip pat žr.}},
+  backrefpage      = {{cituota puslapyje}{cit\adddotspace psl\adddot}},
+  backrefpages     = {{cituota puslapiuose}{cit\adddotspace psl\adddot}},
+  january          = {{sausis}{saus\adddot}},
+  february         = {{vasaris}{vas\adddot}},
+  march            = {{kovas}{kov\adddot}},
+  april            = {{balandis}{bal\adddot}},
+  may              = {{gegužė}{geg\adddot}},
+  june             = {{birželis}{birž\adddot}},
+  july             = {{liepa}{liepa}},
+  august           = {{rugpjūtis}{rugpj\adddot}},
+  september        = {{rugsėjis}{rugs\adddot}},
+  october          = {{spalis}{spal\adddot}},
+  november         = {{lapkritis}{lapkr\adddot}},
+  december         = {{gruodis}{gruod\adddot}},
+  langamerican     = {{amerikiečių}{amerikiečių}},
+  langbrazilian    = {{brazilų}{brazilų}},
+  langcatalan      = {{katalonų}{katalonų}},
+  langcroatian     = {{kroatų}{kroatų}},
+  langczech        = {{čečėnų}{čečėnų}},
+  langdanish       = {{danų}{danų}},
+  langdutch        = {{olandų}{olandų}},
+  langenglish      = {{anglų}{anglų}},
+  langfinnish      = {{suomių}{suomių}},
+  langfrench       = {{prancūzų}{prancūzų}},
+  langgerman       = {{vokiečių}{vokiečių}},
+  langgreek        = {{graikų}{graikų}},
+  langitalian      = {{italų}{italų}},
+  langlatin        = {{lotynų}{lotynų}},
+  langnorwegian    = {{norvegų}{norvegų}},
+  langpolish       = {{lenkų}{lenkų}},
+  langportuguese   = {{portugalų}{portugalų}},
+  langrussian      = {{rusų}{rusų}},
+  langspanish      = {{ispanų}{ispanų}},
+  langswedish      = {{švedų}{švedų}},
+  fromamerican     = {{iš amerikiečių}{iš amerikiečių}},
+  frombrazilian    = {{iš brazilų}{iš brazilų}},
+  fromcatalan      = {{iš katalonų}{iš katalonų}},
+  fromcroatian     = {{iš kroatų}{iš kroatų}},
+  fromczech        = {{iš čečėnų}{iš čečėnų}},
+  fromdanish       = {{iš danų}{iš danų}},
+  fromdutch        = {{iš olandų}{iš olandų}},
+  fromenglish      = {{iš anglų}{iš anglų}},
+  fromfinnish      = {{iš suomių}{iš suomių}},
+  fromfrench       = {{iš prancūzų}{iš prancūzų}},
+  fromgerman       = {{iš vokiečių}{iš vokiečių}},
+  fromgreek        = {{iš graikų}{iš graikų}},
+  fromitalian      = {{iš italų}{iš italų}},
+  fromlatin        = {{iš lotynų}{iš lotynų}},
+  fromnorwegian    = {{iš norvegų}{iš norvegų}},
+  frompolish       = {{iš lenkų}{iš lenkų}},
+  fromportuguese   = {{iš portugalų}{iš portugalų}},
+  fromrussian      = {{iš rusų}{iš rusų}},
+  fromspanish      = {{iš ispanų}{iš ispanų}},
+  fromswedish      = {{iš švedų}{iš švedų}},
+  countryde        = {{Vokietija}{DE}},
+  countryeu        = {{Europos sąjunga}{EU}},
+  countryep        = {{Europos sąjunga}{EU}},
+  countryfr        = {{Prancūzija}{FR}},
+  countryuk        = {{Didžioji Britanija}{GB}},
+  countryus        = {{Jungtinės Amerikos Valstijos}{US}},
+  patent           = {{patentas}{pat\adddot}},
+  patentde         = {{vokiškas patentas}{vokiškas pat\adddot}},
+  patenteu         = {{europinis patentas}{europinis pat\adddot}},
+  patentfr         = {{prancūziškas patentas}{prancūziškas pat\adddot}},
+  patentuk         = {{angliškas patentas}{angliškas pat\adddot}},
+  patentus         = {{U.S\adddotspace patentas}{U.S\adddotspace pat\adddot}},
+  patreq           = {{patento prašymas}{pat\adddot\ praš\adddot}},
+  patreqde         = {{vokiško patento prašymas}{vokiško pat\adddot\ praš\adddot}},
+  patreqeu         = {{europinio patento prašymas}{europinio pat\adddot\ praš\adddot}},
+  patreqfr         = {{prancūziško patento prašymas}{prancūziško pat\adddot\ praš\adddot}},
+  patrequk         = {{angliško patento prašymas}{angliško pat\adddot\ praš\adddot}},
+  patrequs         = {{U.S\adddotspace patento prašymas}{U.S\adddotspace pat\adddot\ praš\adddot}},
+  file             = {{failas}{failas}},
+  library          = {{biblioteka}{biblioteka}},
+  abstract         = {{santrauka}{santrauka}},
+  annotation       = {{anotacijos}{anotacijos}},
+}
+
+\endinput

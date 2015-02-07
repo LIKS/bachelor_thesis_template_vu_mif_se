@@ -1,0 +1,41 @@
+APIE PALEMONÀ
+
+Pakete pateikta lituanistinio Palemono ðrifto didþioji versija (versija 2.1) kartu su licencijos nuostatomis (Licencijos nuostatos.txt), diegimo instrukcija (skaityti.txt) ir demonstraciniais tekstais (tekstai.pdf).
+
+Palemono versija 2.1 nuo ankstesniosios (1.3) skiriasi iðplësta þenklø aibe ir pakoreguotais þenklø pieðiniais. Ji pateikiama kartu su knyga: Ona Aleknavièienë, Laima Grumadienë, Albertas Gurskas, Petras Skirmantas, Mindaugas Strockis, Vladas Tumasonis. Lituanistinis ðriftas Palemonas. Vilnius: Tautiniø bendrijø namai, 2005, 304 p., ISBN 9955-546-22-0. Elektroninæ ðio leidinio versijà PDF formatu galima rasti adresu: www.vlkk.lt. Joje yra bûtinos informacijos apie ðá ðriftà: susisteminti þenklø apraðai, þenklø ir jø komponentø kodai. 
+
+Dabar visos keturios Palemono atmainos (normalioji, kursyvinë, paryðkinta ir paryðkinta kursyvinë) turi visus koduoèiø (kodø lenteliø) CP1250 (centrinës Europos), CP1251 (kirilikos), CP1252 (lotynø I), CP1253 (graikø), CP1254 (turkø), CP1257 (Baltijos ðaliø) þenklus ir visas kirèiuotas lietuviðkas raides.  Dvi ið jø - normalioji ir kursyvinë - turi ir itin gausø (apie 4000) specialiøjø lituanistikai pritaikytø þenklø, dël kuriø Palemonas ir buvo sumanytas, rinkiná. Didþiausià ðio rinkinio dalá sudaro specialieji raðmenys: 1) tarmiø fonetinës transkripcijos; 2) senøjø raðtø; 3) baltistikos ir indoeuropeistikos. Didþiumai jø Unikodo standartas nëra nustatæs konkreèiø kodø, todël kodai jiems parinkti ið ðiame standarte numatytos Privaèiosios srities. 
+
+KAIP ÁDIEGTI PALEMONÀ
+
+1. Kairiuoju pelës klaviðu paspauskite mygtukà „Pradëti“ („Start“).
+
+2. Atvertame meniu pasirinkite (spragtelëkite kairiuoju pelës klaviðu) elementà „Parametrai“ („Settings“).
+
+3. Ið deðiniau atsivërusio meniu pasirinkite elementà „Valdymo skydas“ („Control Panel“). Atsivers langas „Valdymo skydas“(„Control Panel“).
+
+4. Lange „Valdymo skydas“ („Control Panel“) suraskite ir dukart spragtelëkite kairiuoju pelës klaviðu þenkliukà „Ðriftai“ („Fonts“). Atsivers kompiuterio ðriftø langas. 
+
+5. Kairiuoju pelës klaviðu spragtelëkite ðio lango virðuje esanèio meniu elementà „Failas“ („File“).
+
+6. Ið atsivërusio meniu pasirinkite elementà „Install New Font...“. Atsivërusiame lange „Add Fonts“ nurodykite „koordinates“, kur ásiraðëte parsisiøsdintà ir Jûsø iðskleistà ðrifto paketà. Lange „List of fonts:“ pamatysite keturiø ðriftø, sudaranèiø Palemono rinkiná, pavadinimus (Palem-nm.ttf, Palem-it.ttf, Palem-bd.ttf, Palem-bi.ttf).
+
+7. Ásitikinkite, ar langelis „Copy fonts to Fonts folder“ paþymëtas varnele. Jei varnelës nëra, langelá spragtelëkite kairiuoju pelës klaviðu.
+
+8. Kairiuoju pelës klaviðu paspauskite deðiniajame lango „Add Fonts“ kraðte esantá mygtukà „Select All“. Taip paþymësite Palemono rinkiná sudaranèiø ðriftø pavadinimus.
+
+9. Kairiuoju pelës klaviðu paspauskite mygtukà „OK“ ir Palemono ðriftai bus árengti Jûsø kompiuteryje.
+
+10. Uþverkite visus diegiant ðriftà atvertus langus.
+
+11. Duokite kompiuterio kartotinio paleidimo komandà „Paleisti ið naujo“ („Restart“).
+
+Pastaba. Taip pat ásidiegsite ir naujesnes Palemono versijas, kurios bus teikiamos VLKK tinklalapyje (www.vlkk.lt). Prieð árengdami naujesnæ versijà bûtinai paðalinkite senàjà. Tai darykite ðitaip:
+
+a) atlikite veiksmus, nurodytus 1–4 punktuose;
+b) ðriftø sàraðo lange paþymëkite Palemono rinkinio ðriftø pavadinimus (Palem-nm.ttf, Palem-it.ttf, Palem-bd.ttf, Palem-bi.ttf);
+c) ið meniu eilutës pasirinkite elementà „Failas“ („File“);
+d) ið atverto meniu pasirinkite elementà „Delete“ ir teigiamai atsakykite á klausimà, ar tikrai norite paðalinti paþymëtus ðriftus.
+
+Pastabas ir pasiûlymus praðom siøsti doc. dr. Vladui Tumasoniui adresu: Vladas.tumasonis@maf.vu.lt.
+

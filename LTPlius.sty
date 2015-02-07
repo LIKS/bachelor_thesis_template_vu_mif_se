@@ -18,10 +18,17 @@
 % LTplius: bendri lietuviškų dokumentų nustatymai, nesantys
 % lietuviškame babel išplėtime.
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]
-\ProvidesPackage{LTPlius}[2007/01/21 1.3.0 Lithuanian language
+\ProvidesPackage{LTPlius}[2014/12/24 1.4.0 Lithuanian language
 additions]
 
 % Pakeitimai:
+% 2014.12.24 (1.4.0 versija) - Pereita prie XeLaTeX
+%    * babel paketas pakeistas polyglossia paketu.
+%    * Pašalintas lietuviškų kabučių įterpimas su "', "` simbolių
+%      kombinacijomis, nes XeLaTeX palaiko UTF-8 ir įterpti „“ simboliai
+%      yra tinkamai apdorojami.
+%    * Rankinis pirmos skyriaus eilutės identavimas pakeistas indentfirst
+%      paketo importavimu.
 % 2007.01.26 (1.3.0 versija)
 %    * Atnaujinta darbui su littex-20060928 lituanizacija.
 %    * Pašalintas URW šriftų tvarkymas.
@@ -46,47 +53,16 @@ additions]
 %    * Pataisome ir \glqq kabutes L7x koduotėje.
 
 % Keisime keletą babel parametrų
-\RequirePackage[lithuanian]{babel}
+\RequirePackage{polyglossia} 
+\setdefaultlanguage{lithuanian}
+\setotherlanguage{english}
 
-% Ir pirmo paragrafo skyriuje pirma eilutė turi būti atitrauktos
-\let\@oldafterindentfalse\@afterindentfalse
-\def\@ltindent{\let\@afterindentfalse\@afterindenttrue%
-  \@afterindenttrue}
-\def\@noltindent{\let\@afterindentfalse\@oldafterindentfalse%
-  \@afterindentfalse}
-
-\@ltindent
+% Skyriaus pirmo pirma eilutė turi būti atitraukta
+\RequirePackage{indentfirst}
 
 % Kadangi skaičių trupmeninės dalys atskiriamos kableliu,
 % po jo standartiškai dedamas tarpelis nepageidaujamas
 \RequirePackage{icomma}
-
-% Babel išplėtimai: non-french spacing ir lietuviškos kabutės
-
-\initiate@active@char{"}
-\@namedef{extraslithuanian}{%
-    \languageshorthands{lithuanian}}
-\expandafter\addto\csname extraslithuanian\endcsname{%
-    \bbl@activate{"}}
-
-% Non-french spacing
-\expandafter\addto\csname extraslithuanian\endcsname{%
-    \bbl@nonfrenchspacing}
-\expandafter\addto\csname noextraslithuanian\endcsname{%
-    \bbl@frenchspacing}
-\addto\noextraslithuanian{\bbl@deactivate{"}}
-
-% Išsaugome " simbolį kaip \dq
-\begingroup \catcode`\"12
-\def\x{\endgroup
-\def\dq{"}}
-\x
-
-% Teisingos lietuviškos kabutės pasiekiamos taip:
-% "` - atidarančios dvigubos kabutės
-% "' - uždarančios dvigubos kabutės
-\declare@shorthand{lithuanian}{"`}{\glqq{}}
-\declare@shorthand{lithuanian}{"'}{\grqq{}}
 
 % Taškai po skyrių, poskyrių ir kt. numerių turi būti antraštėse,
 % turinyje, bet ne nuorodose.  Modifikuojame keisdami vidinę 
