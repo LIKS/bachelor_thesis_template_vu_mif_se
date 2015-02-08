@@ -71,6 +71,7 @@
     backend=biber,
     sortcites=true,
     style=trad-alpha,
+    abbreviate=true,
     minalphanames=3,
     maxalphanames=3,
     maxnames=9,
