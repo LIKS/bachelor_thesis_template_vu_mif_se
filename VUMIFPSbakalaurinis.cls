@@ -64,18 +64,20 @@
 % Pirmos eilutės paragrafe atitraukimas 1 cm
 \setlength{\parindent}{1cm}
 
-% Bibliografijos stilius
+% Nustatomas bibliografijos stilius
 \RequirePackage[
     alldates=iso8601,
     autolang=other,
     backend=biber,
     sortcites=true,
-    style=alphabetic,
+    style=trad-alpha,
     minalphanames=3,
+    maxalphanames=3,
     maxnames=9,
     minnames=4,
 ]{biblatex}
 \RequirePackage{csquotes}
+% Pliuso ženklas, kuris rodomas esant >3 autoriams, sumažinamas ir pakeliamas
 \renewcommand*{\labelalphaothers}{\textsuperscript{+}}
 
 % -------------------------------
