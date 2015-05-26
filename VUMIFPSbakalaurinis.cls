@@ -50,6 +50,15 @@
 \cfoot{}
 \rfoot{\thepage} % Numeris bus puslapio apačioje dešinėje
 
+% Nerodyti įspėjimo dėl pakeistos article klasės antraščių stiliaus
+\RequirePackage{silence}
+\WarningFilter{caption}{Unsupported document class}
+
+% Po lentelės antraštės prefiksu bus dedamas taškas
+\RequirePackage{caption}
+\captionsetup*[table]{labelsep=period}
+\captionsetup*[figure]{labelsep=period, name=pav}
+
 % Informacijos tituliniame puslapyje kintamieji
 \newcommand{\university}[1]{\def\@university{#1}}
 \newcommand{\faculty}[1]{\def\@faculty{#1}}
@@ -77,7 +86,7 @@
     maxnames=9,
     minnames=4,
 ]{biblatex}
-\RequirePackage{csquotes}
+\RequirePackage[style=lithuanian]{csquotes}
 % Pliuso ženklas, kuris rodomas esant >3 autoriams, sumažinamas ir pakeliamas
 \renewcommand*{\labelalphaothers}{\textsuperscript{+}}
 

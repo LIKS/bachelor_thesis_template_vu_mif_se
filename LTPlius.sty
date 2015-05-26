@@ -1,4 +1,4 @@
-%% LTPlius.sty
+% LTPlius.sty
 %% Copyright 2004, 2005, 2006, 2007 Laurynas Biveinis
 %
 % This work may be distributed and/or modified under the
@@ -22,6 +22,9 @@
 additions]
 
 % Pakeitimai:
+% 2015.05.26 (1.4.1 versija)
+%    * Paveikslėlių ir lentelių antraštėms formatuoti
+%      pradėtas naudoti caption paketas.
 % 2014.12.24 (1.4.0 versija) - Pereita prie XeLaTeX
 %    * babel paketas pakeistas polyglossia paketu.
 %    * Pašalintas lietuviškų kabučių įterpimas su "', "` simbolių
@@ -130,21 +133,10 @@ additions]
 \renewcommand*\descriptionlabel[1]{\hspace\labelsep
                                 \normalfont\bfseries #1.}
 
-% Teisingai formatuojame paveikslėlių antraštes.
-  % Buvo:   \def\fnum@figure{\figurename\nobreakspace\thefigure}
-\def\fnum@figure{\thefigure\nobreakspace\figurename}
 
-\long\def\@makecaption#1#2{%
-  \vskip\abovecaptionskip
-  \sbox\@tempboxa{#1 #2}%
-  \ifdim \wd\@tempboxa >\hsize
-    #1 #2\par
-  \else
-    \global \@minipagefalse
-    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
-  \fi
-  \vskip\belowcaptionskip}
+% Teisingai formatuojame paveikslėlių antraštes.
+\RequirePackage{caption}
+\captionsetup*[figure]{labelsep=period, name=pav}
 
 % Teisingai formatuojame lentelių antraštes.
-  % Buvo: \def\fnum@table{\tablename\nobreakspace\thetable}
-\def\fnum@table{\thetable\nobreakspace\tablename.}
+\captionsetup*[table]{labelsep=period}
