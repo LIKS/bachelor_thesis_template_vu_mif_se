@@ -151,10 +151,8 @@
      \vskip 3.8cm
    }
 
-  \vskip 3cm
   \begin{center}
-    \large
-    {\singlespacing \@date \par}%   
+    {\large \singlespacing \@date \par}%   
   \end{center}\par
   \@thanks
   \vfil\null
