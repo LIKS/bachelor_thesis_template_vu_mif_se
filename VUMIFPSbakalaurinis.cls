@@ -132,7 +132,7 @@
         {\begin{tabular}[t]{l l}%
         \bigskip Atliko: &\; \@author \hfill \@signatureplace \\
         \bigskip Darbo vadovas: &\; \@supervisor \hfill  \@signatureplace \\
-        Recenzentas: &\; \@reviewer \hfill \@signatureplace
+        Darbo recenzentas: &\; \@reviewer \hfill \@signatureplace
         \end{tabular} \par}%
      \end{flushright}
      \vskip 4cm
@@ -145,14 +145,14 @@
         \bigskip Atliko: &\; \@author \hfill \@signatureplace \\
         \bigskip &\; \@secondauthor \hfill \@signatureplace \\
         \bigskip Darbo vadovas: &\; \@supervisor \hfill  \@signatureplace \\
-        Recenzentas: &\; \@reviewer \hfill \@signatureplace
+        Darbo recenzentas: &\; \@reviewer \hfill \@signatureplace
         \end{tabular} \par}%
      \end{flushright}
      \vskip 3.8cm
    }
 
   \begin{center}
-    {\singlespacing \@date \par}%   
+    {\large \singlespacing \@date \par}%   
   \end{center}\par
   \@thanks
   \vfil\null
