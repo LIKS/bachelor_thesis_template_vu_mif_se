@@ -3,14 +3,17 @@ BIBL=bibliografija
 
 all: view
 
-$(MAIN).pdf: $(MAIN).tex $(MAIN).aux $(MAIN).bbl
+$(MAIN).pdf: $(MAIN).tex $(MAIN).bbl $(MAIN).aux
 	xelatex $<
 
 $(MAIN).aux: $(MAIN).tex
 	xelatex $<
 
-$(MAIN).bbl: $(BIBL).bib
+$(MAIN).bbl: $(BIBL).bib $(filter-out $(wildcard $(MAIN).bcf), $(MAIN).bcf)
 	biber $(MAIN)
+
+$(MAIN).bcf: $(MAIN).tex
+	xelatex $<
 
 view: $(MAIN).pdf
 	open bakalaurinis.pdf || xdg-open bakalaurinis.pdf
