@@ -12,7 +12,7 @@ ubuntu:
 	echo "Diegiami OpenType šriftai"
 	sudo apt-get install fonts-texgyre
 	echo "Diegiamas Palemonas šriftas į sistemą"
-	sudo cp -r Palemonas-2.1 /usr/share/fonts/truetype/
+	sudo cp -r Palemonas3.2.05 /usr/share/fonts/truetype/
 
 clean:
 	git clean -dfx
