@@ -10,7 +10,7 @@
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{listings}
-\usepackage{subfig}
+\usepackage{subcaption}
 \usepackage{wrapfig}
 
 % Titulinio aprašas
@@ -27,8 +27,6 @@
 \reviewer{doc. dr. Vardauskas Pavardauskas}
 \date{Vilnius – \the\year}
 
-% Nustatymai
-% \setmainfont{Palemonas}   % Pakeisti teksto šriftą į Palemonas (turi būti įdiegtas sistemoje)
 \bibliography{bibliografija}
 
 \begin{document}
@@ -84,6 +82,22 @@ Citavimo pavyzdžiai: cituojamas vienas šaltinis \cite{PvzStraipsnLt}; cituojam
 keli šaltiniai \cite{PvzStraipsnEn, PvzKonfLt, PvzKonfEn, PvzKnygLt, PvzKnygEn,
 PvzElPubLt, PvzElPubEn, PvzMagistrLt, PvzPhdEn}.
 
+\subsection{Faktorialo algoritmas}
+
+\ref{alg:factorial} pav. parodytas faktorialo algoritmas.
+
+\begin{algorithm}
+\begin{algorithmic}[1] % [1] padaro, kad eilutės būtų sunumeruotos
+\State $N\gets$ skaičius, kurio faktorialą skaičiuojame
+\State $F\gets 1$
+\For{$i := 2$ $to$ $N$}
+    \State $F\gets F \times i$
+\EndFor
+\end{algorithmic}
+\caption{Faktorialo algoritmas}
+\label{alg:factorial}
+\end{algorithm}
+
 \subsubsection{Skirsnis}
 \subsubsubsection{Straipsnis}
 \subsubsection{Skirsnis}
@@ -99,7 +113,7 @@ rekomendacijos, akcentuojamos naujovės). Rezultatai ir išvados pateikiami
 sunumeruotų (gali būti hierarchiniai) sąrašų pavidalu. Darbo rezultatai turi
 atitikti darbo tikslą.
 
-\printbibliography[heading=bibintoc]  % Šaltinių sąraše nurodoma panaudota
+\printbibliography[heading=bibintoc,category=cited]  % Šaltinių sąraše nurodoma panaudota
 % literatūra, kitokie šaltiniai. Abėcėlės tvarka išdėstomi darbe panaudotų
 % (cituotų, perfrazuotų ar bent paminėtų) mokslo leidinių, kitokių publikacijų
 % bibliografiniai aprašai. Šaltinių sąrašas spausdinamas iš naujo puslapio.
