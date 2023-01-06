@@ -170,7 +170,7 @@
    }
 
   \begin{center}
-    {\singlespacing \@date \par}%   
+    {\large \singlespacing \@date \par}%   
   \end{center}\par
   \@thanks
   \vfil\null
