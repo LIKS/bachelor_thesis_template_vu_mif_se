@@ -44,12 +44,8 @@
 % Nustatoma puslapio numerio vieta puslapyje
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-\lhead{}
-\chead{}
-\rhead{} 
-\lfoot{}
-\cfoot{}
-\rfoot{\thepage} % Numeris bus puslapio apačioje dešinėje
+\fancyhf{}
+\fancyfoot[R]{\thepage} % Numeris bus puslapio apačioje dešinėje
 
 % Nerodyti įspėjimo dėl pakeistos article klasės antraščių stiliaus
 \RequirePackage{silence}
@@ -111,7 +107,7 @@
 \newcommand{\@signatureplace}{%
     \parbox[t]{2.5cm}{%
         \makebox[2.5cm]{\raisebox{-0.5ex}{\scriptsize
-        (para\v{s}as) }}}
+        (parašas) }}}
 }
 
 \newcommand{\checkifdefined}[2]{%
@@ -170,7 +166,7 @@
    }
 
   \begin{center}
-    {\large \singlespacing \@date \par}%   
+    {\large \singlespacing \@date \par}%
   \end{center}\par
   \@thanks
   \vfil\null
@@ -333,6 +329,21 @@
 \RequirePackage{enumitem}
 \setlist{nosep}
 
+% Nuorodos turinyje ir kitur padaromos aktyviomis
+\RequirePackage[hidelinks,linktoc=all]{hyperref}
+
+% Nustatomas PDF pavadinimas ir autorius
+\makeatletter
+\AtBeginDocument{
+    \hypersetup{pdftitle = {\@title}}
+    \@ifundefined{@secondauthor}{
+        \hypersetup{pdfauthor = {\@author}}
+    }{
+        \hypersetup{pdfauthor = {\@author\ and \@secondauthor}}
+    }
+}
+\makeatother
+
 % Algoritmai apjuosiami kraštine
 \RequirePackage[boxed]{algorithm}
 
@@ -344,17 +355,4 @@
 \makeatletter
 \let\c@algorithm\c@figure
 \let\ftype@algorithm\ftype@figure
-\makeatother
-
-% Nuorodos turinyje ir kitur padaromos aktyviomis
-\RequirePackage[hidelinks,linktoc=all]{hyperref}
-
-% Nustatomas PDF pavadinimas ir autorius
-\makeatletter
-\AtBeginDocument{
-    \hypersetup{
-        pdftitle = {\@title},
-        pdfauthor = {\@author},
-    }
-}
 \makeatother
