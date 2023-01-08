@@ -7,3 +7,6 @@
 *.toc
 *.bcf
 *.synctex.gz
+*.fdb_latexmk
+*.fls
+*.xdv
