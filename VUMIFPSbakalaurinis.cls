@@ -47,10 +47,6 @@
 \fancyhf{}
 \fancyfoot[R]{\thepage} % Numeris bus puslapio apačioje dešinėje
 
-% Nerodyti įspėjimo dėl pakeistos article klasės antraščių stiliaus
-\RequirePackage{silence}
-\WarningFilter{caption}{Unsupported document class}
-
 % Po lentelės antraštės prefiksu bus dedamas taškas
 \RequirePackage{caption}
 \captionsetup*[table]{labelsep=period}
@@ -122,7 +118,10 @@
     {Tituliniame puslapyje nenurodyta katedra (komanda \protect\department)}
   \checkifdefined{@supervisor}%
     {Tituliniame puslapyje nenurodytas darbo vadovas (komanda \protect\supervisor)}
-   ~
+  % Specialiai pašaliname titulinio puslapio numerį (nors jo ir šiaip nėra),
+  % kad xdvipdfmx nerodytų įspėjimo dėl pakartotinai naudojamo 1 puslapio numerio
+  \pagenumbering{gobble}%
+  ~
   \begin{center}
       {\setstretch{1.3}\large \MakeUppercase{\@university} \\
          \MakeUppercase{\@faculty} \\
@@ -171,6 +170,8 @@
   \@thanks
   \vfil\null
   \end{titlepage}%
+  % Tolesni puslapiai numeruojami įprastai
+  \pagenumbering{arabic}%
   % Atlaisviname panaudotus kintamuosius
   \global\let\@outputtitle\relax
   \global\let\thanks\relax
@@ -203,7 +204,7 @@
 % Skyriaus pavadinimas, turinyje neturintis numerio
 \newcommand{\sectionnonum}[1]{%
     \section*{#1}%
-    \addcontentsline{toc}{section}{#1}% 
+    \addcontentsline{toc}{section}{#1}%
 }
 
 % Skyriaus pavadinimas, neturintis numerio bei neįeinantis į turinį
@@ -328,6 +329,9 @@
 % Panaikinami dvigubi tarpai tarp sąrašo elementų
 \RequirePackage{enumitem}
 \setlist{nosep}
+
+% float paketas turi būti užkraunamas anksčiau nei hyperref
+\RequirePackage{float}
 
 % Nuorodos turinyje ir kitur padaromos aktyviomis
 \RequirePackage[hidelinks,linktoc=all]{hyperref}
