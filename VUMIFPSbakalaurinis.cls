@@ -47,10 +47,7 @@
 \fancyhf{}
 \fancyfoot[R]{\thepage} % Numeris bus puslapio apačioje dešinėje
 
-% Po lentelės antraštės prefiksu bus dedamas taškas
 \RequirePackage{caption}
-\captionsetup*[table]{labelsep=period}
-\captionsetup*[figure]{labelsep=period, name=pav}
 
 % Informacijos tituliniame puslapyje kintamieji
 \newcommand{\university}[1]{\def\@university{#1}}
@@ -93,9 +90,6 @@
 \AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
 
 \RequirePackage[style=lithuanian]{csquotes}
-
-% Pliuso ženklas, kuris rodomas esant >3 autoriams, sumažinamas ir pakeliamas
-\renewcommand*{\labelalphaothers}{\textsuperscript{+}}
 
 % -------------------------------
 % Titulinio puslapio formatavimas
