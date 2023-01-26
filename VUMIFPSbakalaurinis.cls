@@ -14,10 +14,13 @@
 % Bakalauro baigiamojo darbo apiforminimas pagal Vilniaus universiteto
 % Matematikos ir informatikos fakulteto Programų sistemų katedros reikalavimus
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{VUMIFPSbakalaurinis}[2023/01/06 1.1 VU MIF SE bachelor thesis class]
+\ProvidesClass{VUMIFPSbakalaurinis}[2023/01/26 1.3 VU MIF SE bachelor thesis class]
 \LoadClass[12pt, a4paper]{article}
 \RequirePackage{LTPlius}  % Nustatymų sulietuvinimas
 \RequirePackage{fontspec} % Šrifto pasirinkimui
+% Teksto šriftas bus Palemonas.
+% Naujos Palemono versijos talpinamos
+% https://vlkk.lt/palemonas
 \setmainfont[
     Path=fonts/Palemonas3.2.05/,
     Ligatures=TeX,
@@ -26,7 +29,7 @@
     BoldFont=*-bd,
     ItalicFont=*-it,
     BoldItalicFont=*-bi,
-]{Palem3.2.05}  % Teksto šriftas bus Palemonas
+]{Palem3.2.05}
 
 \RequirePackage{setspace} % Intervalas tarp eilučių
 \RequirePackage[
@@ -68,10 +71,11 @@
 \RequirePackage[
     alldates=iso,
     seconds=true,
-    autolang=other,
+    autolang=none,
     backend=biber,
     sortcites=true,
-    style=trad-alpha,
+    sorting=anyt,
+    style=iso-alphabetic,
     abbreviate=true,
     minalphanames=3,
     maxalphanames=3,
@@ -84,11 +88,22 @@
     references = {Šaltiniai},
 }
 
+\DeclareNameAlias{default}{given-family}
+\DeclareDelimFormat{multinamedelim}{\addcomma\space}
+\DeclareDelimFormat{finalnamedelim}{\addcomma\space}
+\renewcommand{\familynameformat}[1]{#1}
+
+% Pliuso ženklas, kuris rodomas esant >3 autoriams, sumažinamas ir pakeliamas
+\renewcommand*{\labelalphaothers}{\textsuperscript{+}}
+
 % Pridedame visus pacituotus darbus į kategoriją, tai leidžia
 % spausdinti tik pacituotus darbus su \printbibliography[category=cited]
 \DeclareBibliographyCategory{cited}
 \AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
 
+% TODO: pašalinti csquotes.cfg failą 2025 metais, nes csquotes
+% paketas pridėjo lietuvišką kabučių stilių 2023-01-24, tad nebereikės
+% specialios konfigūracijos, kai nauja versija bus plačiai prieinama
 \RequirePackage[style=lithuanian]{csquotes}
 
 % -------------------------------
@@ -237,7 +252,7 @@
       \leavevmode {
       \advance\leftskip\@tempdima
       \hskip -\leftskip
-      % Uppercasing first level titles
+      % Skyrių pavadinimai paverčiami vien didžiosiomis raidėmis
       \MakeUppercase{#1}}\nobreak\
       \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}
      \hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
@@ -330,6 +345,21 @@
 % Nuorodos turinyje ir kitur padaromos aktyviomis
 \RequirePackage[hidelinks,linktoc=all]{hyperref}
 
+% Pataisymas, kad veiktų kompiliavimas su LuaLaTeX.
+% TODO: galima pašalinti 2025 m., nes pataisymas jau yra
+% naujausioje hyperref paketo versijoje:
+% https://github.com/latex3/hyperref/issues/121
+% Kompiliavimas su LuaLaTeX padaro, kad veiktų turinio skyrių nuorodos
+% į puslapius (su XeLaTeX neveikia).
+\RequirePackage{iftex}
+\ifLuaTeX
+  \makeatletter
+  \let\ORG@hyper@linkstart\hyper@linkstart
+  \protected\def\hyper@linkstart#1#2{%
+    \lowercase{\ORG@hyper@linkstart{#1}{#2}}}
+  \makeatother
+\fi
+
 % Nustatomas PDF pavadinimas ir autorius
 \makeatletter
 \AtBeginDocument{
@@ -347,7 +377,7 @@
 
 % Algoritmai laikomi paveiksliukais, todėl turi vadintis pav.
 \DeclareCaptionLabelFormat{alg}{#2 #1}
-\captionsetup[algorithm]{name=pav,labelformat=alg,labelsep=period}
+\captionsetup[algorithm]{name=pav.,labelformat=alg,labelsep=space}
 
 % Algoritmų numeracija turi sutapti su paveiksliukų
 \makeatletter
