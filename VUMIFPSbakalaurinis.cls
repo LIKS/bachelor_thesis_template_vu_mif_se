@@ -74,7 +74,7 @@
     autolang=none,
     backend=biber,
     sortcites=true,
-    style=trad-alpha,
+    style=iso-alphabetic,
     abbreviate=true,
     minalphanames=3,
     maxalphanames=3,
@@ -86,6 +86,15 @@
 \DefineBibliographyStrings{lithuanian}{%
     references = {Šaltiniai},
 }
+
+\DeclareNameAlias{default}{given-family}
+\DeclareNameAlias{sortname}{given-family}
+\DeclareDelimFormat{multinamedelim}{\addcomma\space}
+\DeclareDelimFormat{finalnamedelim}{\addcomma\space}
+\renewcommand{\familynameformat}[1]{#1}
+
+% Pliuso ženklas, kuris rodomas esant >3 autoriams, sumažinamas ir pakeliamas
+\renewcommand*{\labelalphaothers}{\textsuperscript{+}}
 
 % Pridedame visus pacituotus darbus į kategoriją, tai leidžia
 % spausdinti tik pacituotus darbus su \printbibliography[category=cited]
