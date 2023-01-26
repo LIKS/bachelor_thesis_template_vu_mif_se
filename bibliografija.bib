@@ -1,6 +1,8 @@
 % Plačiau apie šaltinių tipus ir jų atributus:
 % http://mirror.datacenter.by/pub/mirrors/CTAN/macros/latex/contrib/biblatex/doc/biblatex.pdf#subsection.2.1
 
+% Pastaba dėl puslapių intervalo nurodymo: nesvarbu, ar naudosime '-', ar '--',
+% tai bus paversta tuo pačiu simboliu (brūkšniu)
 @article{PvzStraipsnLt,
     author={A. Pavardenis and B. Pavardonis and C. Pavardauskas},
     title={Straipsnio pavadinimas},
@@ -8,7 +10,7 @@
     year={2001},
     volume={IV},
     pages={8-17},
-} 
+}
 
 @article{PvzStraipsnEn,
     author={A. Surname and B. Tsurname and C. Usurname},
@@ -18,7 +20,7 @@
     volume={IV},
     pages={3-15},
     langid={english},
-} 
+}
 
 @inproceedings{PvzKonfLt,
     author={A. Pavardenis and B. Pavardonis and C. Pavardauskas and D. Pavardinskas},
@@ -41,7 +43,8 @@
     langid={english},
 }
 
-@book{PvzKnygLt,  
+% 172 psl. reiškia, kiek knygoje yra puslapių
+@book{PvzKnygLt,
     author={A. Pavardenis and B. Pavardonis and C. Pavardauskas},
     title={Knygos pavadinimas},
     publisher={Leidykla},
@@ -50,13 +53,13 @@
     note={172 psl.},
 }
 
-@book{PvzKnygEn,  
+@book{PvzKnygEn,
     author={A. Surname and B. Tsurname and C. Usurname},
     title={Book title},
     publisher={Publisher},
     year={2003},
     address={City, country},
-    note={172 p.},
+    note={172 psl.},
     langid={english},
 }
 

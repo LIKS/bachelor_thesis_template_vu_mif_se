@@ -10,3 +10,5 @@
 *.fdb_latexmk
 *.fls
 *.xdv
+*.nav
+*.snm

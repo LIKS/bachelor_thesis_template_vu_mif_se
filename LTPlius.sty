@@ -18,10 +18,13 @@
 % LTplius: bendri lietuviškų dokumentų nustatymai, nesantys
 % lietuviškame babel išplėtime.
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]
-\ProvidesPackage{LTPlius}[2014/12/24 1.4.0 Lithuanian language
+\ProvidesPackage{LTPlius}[2023/01/26 1.4.2 Lithuanian language
 additions]
 
 % Pakeitimai:
+% 2023.01.26 (1.4.2 versija)
+%    * pašalintas indentfirst paketas, nes polyglossia paketas šituo pasirūpina
+%    * supaprastintas paveikslėlių antraščių nustatymas, rezultatas nepasikeitė
 % 2015.05.26 (1.4.1 versija)
 %    * Paveikslėlių ir lentelių antraštėms formatuoti
 %      pradėtas naudoti caption paketas.
@@ -44,7 +47,7 @@ additions]
 %    * Taškas po skyriaus numerio dedamas skyriaus pavadinime ir turinyje,
 %      bet ne nuorodose į tą skyrių.
 %    * Palaikome ne tik L7x koduotę, bet ir kitas (T1).
-%    * Lietuviškai formatuojame teoremų aplinkas, aprašymus (description), 
+%    * Lietuviškai formatuojame teoremų aplinkas, aprašymus (description),
 %      paveikslėlių antraštes.
 % 2005.06.13
 %    * Funkcionalumas iš indentfirst perkeltas čia.
@@ -55,20 +58,17 @@ additions]
 % 2006.03.17
 %    * Pataisome ir \glqq kabutes L7x koduotėje.
 
-% Keisime keletą babel parametrų
-\RequirePackage{polyglossia} 
+% Keisime keletą polyglossia parametrų
+\RequirePackage{polyglossia}
 \setdefaultlanguage{lithuanian}
 \setotherlanguage{english}
-
-% Skyriaus pirmo pirma eilutė turi būti atitraukta
-\RequirePackage{indentfirst}
 
 % Kadangi skaičių trupmeninės dalys atskiriamos kableliu,
 % po jo standartiškai dedamas tarpelis nepageidaujamas
 \RequirePackage{icomma}
 
 % Taškai po skyrių, poskyrių ir kt. numerių turi būti antraštėse,
-% turinyje, bet ne nuorodose.  Modifikuojame keisdami vidinę 
+% turinyje, bet ne nuorodose.  Modifikuojame keisdami vidinę
 % LaTeX @sect komandą.
 \def\@sect#1#2#3#4#5#6[#7]#8{%
   \ifnum #2>\c@secnumdepth
@@ -136,7 +136,7 @@ additions]
 
 % Teisingai formatuojame paveikslėlių antraštes.
 \RequirePackage{caption}
-\captionsetup*[figure]{labelsep=period, name=pav}
+\captionsetup*[figure]{labelsep=space}
 
 % Teisingai formatuojame lentelių antraštes.
 \captionsetup*[table]{labelsep=period}
