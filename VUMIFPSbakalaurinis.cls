@@ -74,6 +74,7 @@
     autolang=none,
     backend=biber,
     sortcites=true,
+    sorting=anyt,
     style=iso-alphabetic,
     abbreviate=true,
     minalphanames=3,
@@ -88,7 +89,6 @@
 }
 
 \DeclareNameAlias{default}{given-family}
-\DeclareNameAlias{sortname}{given-family}
 \DeclareDelimFormat{multinamedelim}{\addcomma\space}
 \DeclareDelimFormat{finalnamedelim}{\addcomma\space}
 \renewcommand{\familynameformat}[1]{#1}
