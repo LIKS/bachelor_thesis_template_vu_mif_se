@@ -14,7 +14,7 @@
 % Bakalauro baigiamojo darbo apiforminimas pagal Vilniaus universiteto
 % Matematikos ir informatikos fakulteto Programų sistemų katedros reikalavimus
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{VUMIFPSbakalaurinis}[2023/01/26 1.3 VU MIF SE bachelor thesis class]
+\ProvidesClass{VUMIFPSbakalaurinis}[2023/01/27 1.4 VU MIF SE bachelor thesis class]
 \LoadClass[12pt, a4paper]{article}
 \RequirePackage{LTPlius}  % Nustatymų sulietuvinimas
 \RequirePackage{fontspec} % Šrifto pasirinkimui
@@ -88,18 +88,21 @@
     references = {Šaltiniai},
 }
 
+% Autorius rašomas kaip Vardas Pavardė, ne Pavardė, Vardas
 \DeclareNameAlias{default}{given-family}
+% Skirtukai tarp autorių padaromi kableliais
 \DeclareDelimFormat{multinamedelim}{\addcomma\space}
 \DeclareDelimFormat{finalnamedelim}{\addcomma\space}
+% Nepaverčiame pavardžių didžiosiomis raidėmis
 \renewcommand{\familynameformat}[1]{#1}
 
 % Pliuso ženklas, kuris rodomas esant >3 autoriams, sumažinamas ir pakeliamas
 \renewcommand*{\labelalphaothers}{\textsuperscript{+}}
 
-% Pridedame visus pacituotus darbus į kategoriją, tai leidžia
-% spausdinti tik pacituotus darbus su \printbibliography[category=cited]
-\DeclareBibliographyCategory{cited}
-\AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
+% Nutildome įspėjimus dėl neegzistuojančių failų.
+\usepackage{silence}
+\WarningFilter{biblatex}{File 'american-iso.lbx' not found!}
+\WarningFilter{biblatex}{File 'lithuanian-iso.lbx' not found!}
 
 % TODO: pašalinti csquotes.cfg failą 2025 metais, nes csquotes
 % paketas pridėjo lietuvišką kabučių stilių 2023-01-24, tad nebereikės
@@ -128,7 +131,7 @@
   \checkifdefined{@supervisor}%
     {Tituliniame puslapyje nenurodytas darbo vadovas (komanda \protect\supervisor)}
   % Specialiai pašaliname titulinio puslapio numerį (nors jo ir šiaip nėra),
-  % kad xdvipdfmx nerodytų įspėjimo dėl pakartotinai naudojamo 1 puslapio numerio
+  % kad nerodytų įspėjimo dėl pakartotinai naudojamo 1 puslapio numerio
   \pagenumbering{gobble}%
   ~
   \begin{center}
@@ -206,7 +209,7 @@
   \global\let\@signatureplace\relax
   \global\let\checkifdefined\relax
   \setcounter{footnote}{0}%
-  % Nustatome dokumentui 1,5 eilutės intervalą
+  % Nustatome dokumentui 1,5 tarpo tarp eilučių intervalą
   \onehalfspacing
 }
 
@@ -218,18 +221,19 @@
 
 % Skyriaus pavadinimas, neturintis numerio bei neįeinantis į turinį
 \newcommand{\sectionnonumnocontent}[1]{%
-    \section*{#1}%   Sugadina pirmojo šio tipo skyriaus numeravimą puslapiais
+    \section*{#1}%
+    \sectionbookmark{#1}% Sukuriame PDF nuorodą
 }
 
 \renewcommand\tableofcontents{%
-    % Sukuriame PDF nuorodą į turinį
-    \pdfbookmark[1]{\contentsname}{toc}%
     % Turinys su viengubu intervalu tarp eilučių
     \begin{singlespacing}%
-        \section*{\bf\normalsize\centering\MakeUppercase\contentsname
-        \@mkboth{%
-           \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
-    \@starttoc{toc}%
+        \section*{%
+            \bf\normalsize\centering\MakeUppercase\contentsname%
+            \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
+        }%
+        \sectionbookmark{\contentsname}% Sukuriame PDF nuorodą į turinį
+        \@starttoc{toc}%
     \end{singlespacing}%
     \newpage%
 }
@@ -273,10 +277,13 @@
 \renewcommand{\appendix}{%
     \renewcommand{\section}{%
         \cleardoublepage%
-         \secdef\@Appendix\@sAppendix%
+        \secdef\@Appendix\@sAppendix%
     }%
     \setcounter{section}{0}%
     \renewcommand{\thesection}{nr. \arabic{section}}%
+    % Pataisymas, kad PDF žymėse pridėtų kaip atskirą skyrių
+    % (be šio pataisymo prideda kaip praeito skyriaus poskyrį)
+    \phantomsection%
     % Pridedame į turinį
     \addcontentsline{toc}{section}{Priedai}%
 }
@@ -369,6 +376,18 @@
     }{
         \hypersetup{pdfauthor = {\@author\ and \@secondauthor}}
     }
+}
+\makeatother
+
+% Paimta iš https://tex.stackexchange.com/a/330535
+\RequirePackage{bookmark}
+\makeatletter
+\newcommand*{\sectionbookmark}[1][]{%
+  \bookmark[%
+    level=section,%
+    dest=\@currentHref,%
+    #1%
+  ]%
 }
 \makeatother
 
