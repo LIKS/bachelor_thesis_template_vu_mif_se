@@ -4,7 +4,7 @@
 %% Latest version available here: https://github.com/LIKS/bachelor_thesis_template_vu_mif_se
 %% Any suggestions or contributions are welcome!  Also see: https://latex.liks.lt!
 %
-%% License CC BY 4.0 (see more at http://creativecommons.org/licenses/by/4.0/) 
+%% License CC BY 4.0 (see more at http://creativecommons.org/licenses/by/4.0/)
 % You are free to (a) share - copy and redistribute the material in any medium
 % or format (b) adapt - remix, transform, and build upon the material for any
 % purpose, even commercially. As long as you give appropriate credit, provide a

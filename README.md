@@ -3,6 +3,7 @@
 ## Pasiruošimas
 
 Šablonas naudoja:  
+- `latexmk` kompiliavimo paleidimui  
 - `lualatex` PDF generavimui  
 - `biblatex` ir `biber` bibliografijos tvarkymui  
 
