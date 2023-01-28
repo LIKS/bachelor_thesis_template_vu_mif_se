@@ -86,6 +86,7 @@
 % Literatūros sąrašą reikia pervadinti
 \DefineBibliographyStrings{lithuanian}{%
     references = {Šaltiniai},
+    in = {},
 }
 
 % Autorius rašomas kaip Vardas Pavardė, ne Pavardė, Vardas
