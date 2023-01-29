@@ -14,7 +14,7 @@
 % Bakalauro baigiamojo darbo apiforminimas pagal Vilniaus universiteto
 % Matematikos ir informatikos fakulteto Programų sistemų katedros reikalavimus
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{VUMIFPSbakalaurinis}[2023/01/27 1.4 VU MIF SE bachelor thesis class]
+\ProvidesClass{VUMIFPSbakalaurinis}[2023/01/29 1.4 VU MIF SE bachelor thesis class]
 \LoadClass[12pt, a4paper]{article}
 \RequirePackage{LTPlius}  % Nustatymų sulietuvinimas
 \RequirePackage{fontspec} % Šrifto pasirinkimui
@@ -63,6 +63,7 @@
 \newcommand{\status}[1]{\def\@status{#1}}
 \newcommand{\titleineng}[1]{\def\@titleineng{#1}}
 \newcommand{\secondauthor}[1]{\def\@secondauthor{#1}}
+\newcommand{\addsignatureplaces}{\def\@addsignatureplaces}
 
 % Pirmos eilutės paragrafe atitraukimas 1 cm
 \setlength{\parindent}{1cm}
@@ -114,9 +115,10 @@
 % Titulinio puslapio formatavimas
 % -------------------------------
 \newcommand{\@signatureplace}{%
-    \parbox[t]{2.5cm}{%
-        \makebox[2.5cm]{\raisebox{-0.5ex}{\scriptsize
-        (parašas) }}}
+    \@ifundefined{@addsignatureplaces}{}{%
+        \parbox[t]{2.5cm}{%
+            \makebox[2.5cm]{\raisebox{-0.5ex}{\scriptsize{(parašas)}}}%
+        }}
 }
 
 \newcommand{\checkifdefined}[2]{%
@@ -161,8 +163,7 @@
         Darbo recenzentas: &\; \@reviewer \hfill \@signatureplace
         \end{tabular} \par}%
      \end{flushright}
-     \vskip 4cm
-   }{
+  }{
      \vskip 2.8cm
      \begin{flushright}
         \large
@@ -174,14 +175,12 @@
         Darbo recenzentas: &\; \@reviewer \hfill \@signatureplace
         \end{tabular} \par}%
      \end{flushright}
-     \vskip 3.8cm
-   }
-
+  }
+  \vfill
   \begin{center}
     {\large \singlespacing \@date \par}%
   \end{center}\par
   \@thanks
-  \vfil\null
   \end{titlepage}%
   % Tolesni puslapiai numeruojami įprastai
   \pagenumbering{arabic}%
