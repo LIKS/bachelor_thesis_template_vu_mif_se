@@ -7,6 +7,8 @@
 - `lualatex` PDF generavimui  
 - `biblatex` ir `biber` bibliografijos tvarkymui  
 
+Pagrindinis šriftas yra [Palemonas](https://vlkk.lt/palemonas).
+
 ### Linux
 
 Instaliuoti Tex Live.
