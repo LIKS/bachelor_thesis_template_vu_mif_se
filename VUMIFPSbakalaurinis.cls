@@ -311,10 +311,8 @@
 % Apibrėžiame ketvirto lygio skyrius
 \newcommand{\subsubsubsection}{\subsubparagraph}
 
-\makeatletter
 \renewcommand\subsubsubsection{\@startsection{paragraph}{4}{0ex}{-3.25ex plus -1ex minus
 -0.2ex}{1.5ex plus 0.2ex}{\normalfont\normalsize\bfseries}}
-\makeatother
 
 \stepcounter{secnumdepth}
 \stepcounter{tocdepth}
@@ -323,11 +321,9 @@
 % Turinio skyrių indentavimo nustatymas. Kiekvienam skyriui nustatoma:
 % 1. Atitraukimo iš kairės plotis
 % 2. Vietos, skiriama skaičiams, plotis
-\makeatletter
-  \renewcommand*\l@subsection{\@dottedtocline{2}{0.1cm}{0.87cm}}
-  \renewcommand*\l@subsubsection{\@dottedtocline{3}{0.8cm}{1.22cm}}
-  \renewcommand*\l@paragraph{\@dottedtocline{4}{1.5cm}{1.52cm}}
-\makeatother
+\renewcommand*\l@subsection{\@dottedtocline{2}{0.1cm}{0.87cm}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{0.8cm}{1.22cm}}
+\renewcommand*\l@paragraph{\@dottedtocline{4}{1.5cm}{1.52cm}}
 
 % Raktinių žodžių komandos
 \newcommand\keywords[1]{%
@@ -363,15 +359,12 @@
 % į puslapius (su XeLaTeX neveikia).
 \RequirePackage{iftex}
 \ifLuaTeX
-  \makeatletter
   \let\ORG@hyper@linkstart\hyper@linkstart
   \protected\def\hyper@linkstart#1#2{%
     \lowercase{\ORG@hyper@linkstart{#1}{#2}}}
-  \makeatother
 \fi
 
 % Nustatomas PDF pavadinimas ir autorius
-\makeatletter
 \AtBeginDocument{
     \hypersetup{pdftitle = {\@title}}
     \@ifundefined{@secondauthor}{
@@ -380,11 +373,9 @@
         \hypersetup{pdfauthor = {\@author\ and \@secondauthor}}
     }
 }
-\makeatother
 
 % Paimta iš https://tex.stackexchange.com/a/330535
 \RequirePackage{bookmark}
-\makeatletter
 \newcommand*{\sectionbookmark}[1][]{%
   \bookmark[%
     level=section,%
@@ -392,7 +383,6 @@
     #1%
   ]%
 }
-\makeatother
 
 % Algoritmai apjuosiami kraštine
 \RequirePackage[boxed]{algorithm}
@@ -402,7 +392,5 @@
 \captionsetup[algorithm]{name=pav.,labelformat=alg,labelsep=space}
 
 % Algoritmų numeracija turi sutapti su paveiksliukų
-\makeatletter
 \let\c@algorithm\c@figure
 \let\ftype@algorithm\ftype@figure
-\makeatother
