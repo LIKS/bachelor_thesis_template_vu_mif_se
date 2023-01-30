@@ -14,7 +14,7 @@
 % Bakalauro baigiamojo darbo apiforminimas pagal Vilniaus universiteto
 % Matematikos ir informatikos fakulteto Programų sistemų katedros reikalavimus
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{VUMIFPSbakalaurinis}[2023/01/29 1.4 VU MIF SE bachelor thesis class]
+\ProvidesClass{VUMIFPSbakalaurinis}[2023/01/30 1.4 VU MIF SE bachelor thesis class]
 \LoadClass[12pt, a4paper]{article}
 \RequirePackage{LTPlius}  % Nustatymų sulietuvinimas
 \RequirePackage{fontspec} % Šrifto pasirinkimui
@@ -115,7 +115,9 @@
 % Titulinio puslapio formatavimas
 % -------------------------------
 \newcommand{\@signatureplace}{%
-    \@ifundefined{@addsignatureplaces}{}{%
+    % Jeigu nenorima įdėti vietų parašams,
+    % teksto išdėstymas neturėtų smarkiai keistis
+    \@ifundefined{@addsignatureplaces}{\qquad}{%
         \parbox[t]{2.5cm}{%
             \makebox[2.5cm]{\raisebox{-0.5ex}{\scriptsize{(parašas)}}}%
         }}
@@ -178,8 +180,9 @@
   }
   \vfill
   \begin{center}
-    {\large \singlespacing \@date \par}%
-  \end{center}\par
+    \large{\@date}%
+  \end{center}
+  \vskip 0.4cm
   \@thanks
   \end{titlepage}%
   % Tolesni puslapiai numeruojami įprastai
