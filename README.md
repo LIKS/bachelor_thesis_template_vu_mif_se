@@ -43,3 +43,11 @@ Instaliuoti [MacTex](https://tug.org/mactex).
 ### Windows
 
 Įvykdyti `latexmk -lualatex bakalaurinis.tex`.
+
+## Kitos naudingos komandos
+
+### Linux / macOS
+
+- dokumento žodžių skaičius (apytikslis): `make wordcount`  
+- paprastų klaidų patikrinimas (pastaba: praneša apie daugybę dalykų, iš kurių nebūtinai visi aktualūs): `make check`  
+- nereikalingų failų išvalymas: `make clean`
