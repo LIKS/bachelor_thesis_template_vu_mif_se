@@ -37,7 +37,7 @@ Instaliuoti [MacTex](https://tug.org/mactex).
 
 Įvykdyti vieną iš:  
 - `make`  
-- `make generuoti`  
+- `make pdf`  
 - `latexmk -lualatex bakalaurinis.tex` (ta pati komanda, kurią įvykdo kiti du variantai)
 
 ### Windows
