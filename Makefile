@@ -15,4 +15,4 @@ check:
 	chktex bakalaurinis.tex
 
 clean:
-	git clean -dfx
+	git clean -dfX
