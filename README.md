@@ -42,7 +42,7 @@ Instaliuoti [MacTex](https://tug.org/mactex).
 
 ### Windows
 
-Įvykdyti `latexmk -lualatex bakalaurinis.tex`.
+Įvykdyti `latexmk -lualatex -halt-on-error bakalaurinis.tex`.
 
 ## Kitos naudingos komandos
 
