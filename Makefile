@@ -1,7 +1,7 @@
 .PHONY: pdf ubuntu wordcount check clean
 
 pdf:
-	latexmk -lualatex bakalaurinis.tex
+	latexmk -lualatex -halt-on-error bakalaurinis.tex
 	open kursinis.pdf || xdg-open bakalaurinis.pdf
 
 ubuntu:
