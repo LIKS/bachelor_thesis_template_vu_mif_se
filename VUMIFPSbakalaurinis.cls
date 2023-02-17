@@ -4,7 +4,7 @@
 %% Latest version available here: https://github.com/LIKS/bachelor_thesis_template_vu_mif_se
 %% Any suggestions or contributions are welcome!  Also see: https://latex.liks.lt!
 %
-%% License CC BY 4.0 (see more at http://creativecommons.org/licenses/by/4.0/) 
+%% License CC BY 4.0 (see more at http://creativecommons.org/licenses/by/4.0/)
 % You are free to (a) share - copy and redistribute the material in any medium
 % or format (b) adapt - remix, transform, and build upon the material for any
 % purpose, even commercially. As long as you give appropriate credit, provide a
@@ -14,7 +14,7 @@
 % Bakalauro baigiamojo darbo apiforminimas pagal Vilniaus universiteto
 % Matematikos ir informatikos fakulteto Programų sistemų katedros reikalavimus
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{VUMIFPSbakalaurinis}[2023/01/26 1.3 VU MIF SE bachelor thesis class]
+\ProvidesClass{VUMIFPSbakalaurinis}[2023/01/30 1.4 VU MIF SE bachelor thesis class]
 \LoadClass[12pt, a4paper]{article}
 \RequirePackage{LTPlius}  % Nustatymų sulietuvinimas
 \RequirePackage{fontspec} % Šrifto pasirinkimui
@@ -63,6 +63,7 @@
 \newcommand{\status}[1]{\def\@status{#1}}
 \newcommand{\titleineng}[1]{\def\@titleineng{#1}}
 \newcommand{\secondauthor}[1]{\def\@secondauthor{#1}}
+\newcommand{\addsignatureplaces}{\def\@addsignatureplaces}
 
 % Pirmos eilutės paragrafe atitraukimas 1 cm
 \setlength{\parindent}{1cm}
@@ -86,20 +87,24 @@
 % Literatūros sąrašą reikia pervadinti
 \DefineBibliographyStrings{lithuanian}{%
     references = {Šaltiniai},
+    in = {},
 }
 
+% Autorius rašomas kaip Vardas Pavardė, ne Pavardė, Vardas
 \DeclareNameAlias{default}{given-family}
+% Skirtukai tarp autorių padaromi kableliais
 \DeclareDelimFormat{multinamedelim}{\addcomma\space}
 \DeclareDelimFormat{finalnamedelim}{\addcomma\space}
+% Nepaverčiame pavardžių didžiosiomis raidėmis
 \renewcommand{\familynameformat}[1]{#1}
 
 % Pliuso ženklas, kuris rodomas esant >3 autoriams, sumažinamas ir pakeliamas
 \renewcommand*{\labelalphaothers}{\textsuperscript{+}}
 
-% Pridedame visus pacituotus darbus į kategoriją, tai leidžia
-% spausdinti tik pacituotus darbus su \printbibliography[category=cited]
-\DeclareBibliographyCategory{cited}
-\AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
+% Nutildome įspėjimus dėl neegzistuojančių failų.
+\usepackage{silence}
+\WarningFilter{biblatex}{File 'american-iso.lbx' not found!}
+\WarningFilter{biblatex}{File 'lithuanian-iso.lbx' not found!}
 
 % TODO: pašalinti csquotes.cfg failą 2025 metais, nes csquotes
 % paketas pridėjo lietuvišką kabučių stilių 2023-01-24, tad nebereikės
@@ -110,9 +115,12 @@
 % Titulinio puslapio formatavimas
 % -------------------------------
 \newcommand{\@signatureplace}{%
-    \parbox[t]{2.5cm}{%
-        \makebox[2.5cm]{\raisebox{-0.5ex}{\scriptsize
-        (parašas) }}}
+    % Jeigu nenorima įdėti vietų parašams,
+    % teksto išdėstymas neturėtų smarkiai keistis
+    \@ifundefined{@addsignatureplaces}{\qquad}{%
+        \parbox[t]{2.5cm}{%
+            \makebox[2.5cm]{\raisebox{-0.5ex}{\scriptsize{(parašas)}}}%
+        }}
 }
 
 \newcommand{\checkifdefined}[2]{%
@@ -128,7 +136,7 @@
   \checkifdefined{@supervisor}%
     {Tituliniame puslapyje nenurodytas darbo vadovas (komanda \protect\supervisor)}
   % Specialiai pašaliname titulinio puslapio numerį (nors jo ir šiaip nėra),
-  % kad xdvipdfmx nerodytų įspėjimo dėl pakartotinai naudojamo 1 puslapio numerio
+  % kad nerodytų įspėjimo dėl pakartotinai naudojamo 1 puslapio numerio
   \pagenumbering{gobble}%
   ~
   \begin{center}
@@ -157,8 +165,7 @@
         Darbo recenzentas: &\; \@reviewer \hfill \@signatureplace
         \end{tabular} \par}%
      \end{flushright}
-     \vskip 4cm
-   }{
+  }{
      \vskip 2.8cm
      \begin{flushright}
         \large
@@ -170,14 +177,13 @@
         Darbo recenzentas: &\; \@reviewer \hfill \@signatureplace
         \end{tabular} \par}%
      \end{flushright}
-     \vskip 3.8cm
-   }
-
+  }
+  \vfill
   \begin{center}
-    {\large \singlespacing \@date \par}%
-  \end{center}\par
+    \large{\@date}%
+  \end{center}
+  \vskip 0.4cm
   \@thanks
-  \vfil\null
   \end{titlepage}%
   % Tolesni puslapiai numeruojami įprastai
   \pagenumbering{arabic}%
@@ -206,7 +212,7 @@
   \global\let\@signatureplace\relax
   \global\let\checkifdefined\relax
   \setcounter{footnote}{0}%
-  % Nustatome dokumentui 1,5 eilutės intervalą
+  % Nustatome dokumentui 1,5 tarpo tarp eilučių intervalą
   \onehalfspacing
 }
 
@@ -218,18 +224,19 @@
 
 % Skyriaus pavadinimas, neturintis numerio bei neįeinantis į turinį
 \newcommand{\sectionnonumnocontent}[1]{%
-    \section*{#1}%   Sugadina pirmojo šio tipo skyriaus numeravimą puslapiais
+    \section*{#1}%
+    \sectionbookmark{#1}% Sukuriame PDF nuorodą
 }
 
 \renewcommand\tableofcontents{%
-    % Sukuriame PDF nuorodą į turinį
-    \pdfbookmark[1]{\contentsname}{toc}%
     % Turinys su viengubu intervalu tarp eilučių
     \begin{singlespacing}%
-        \section*{\bf\normalsize\centering\MakeUppercase\contentsname
-        \@mkboth{%
-           \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
-    \@starttoc{toc}%
+        \section*{%
+            \bf\normalsize\centering\MakeUppercase\contentsname%
+            \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
+        }%
+        \sectionbookmark{\contentsname}% Sukuriame PDF nuorodą į turinį
+        \@starttoc{toc}%
     \end{singlespacing}%
     \newpage%
 }
@@ -273,10 +280,13 @@
 \renewcommand{\appendix}{%
     \renewcommand{\section}{%
         \cleardoublepage%
-         \secdef\@Appendix\@sAppendix%
+        \secdef\@Appendix\@sAppendix%
     }%
     \setcounter{section}{0}%
     \renewcommand{\thesection}{nr. \arabic{section}}%
+    % Pataisymas, kad PDF žymėse pridėtų kaip atskirą skyrių
+    % (be šio pataisymo prideda kaip praeito skyriaus poskyrį)
+    \phantomsection%
     % Pridedame į turinį
     \addcontentsline{toc}{section}{Priedai}%
 }
@@ -301,10 +311,8 @@
 % Apibrėžiame ketvirto lygio skyrius
 \newcommand{\subsubsubsection}{\subsubparagraph}
 
-\makeatletter
 \renewcommand\subsubsubsection{\@startsection{paragraph}{4}{0ex}{-3.25ex plus -1ex minus
 -0.2ex}{1.5ex plus 0.2ex}{\normalfont\normalsize\bfseries}}
-\makeatother
 
 \stepcounter{secnumdepth}
 \stepcounter{tocdepth}
@@ -313,11 +321,9 @@
 % Turinio skyrių indentavimo nustatymas. Kiekvienam skyriui nustatoma:
 % 1. Atitraukimo iš kairės plotis
 % 2. Vietos, skiriama skaičiams, plotis
-\makeatletter
-  \renewcommand*\l@subsection{\@dottedtocline{2}{0.1cm}{0.87cm}}
-  \renewcommand*\l@subsubsection{\@dottedtocline{3}{0.8cm}{1.22cm}}
-  \renewcommand*\l@paragraph{\@dottedtocline{4}{1.5cm}{1.52cm}}
-\makeatother
+\renewcommand*\l@subsection{\@dottedtocline{2}{0.1cm}{0.87cm}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{0.8cm}{1.22cm}}
+\renewcommand*\l@paragraph{\@dottedtocline{4}{1.5cm}{1.52cm}}
 
 % Raktinių žodžių komandos
 \newcommand\keywords[1]{%
@@ -353,15 +359,12 @@
 % į puslapius (su XeLaTeX neveikia).
 \RequirePackage{iftex}
 \ifLuaTeX
-  \makeatletter
   \let\ORG@hyper@linkstart\hyper@linkstart
   \protected\def\hyper@linkstart#1#2{%
     \lowercase{\ORG@hyper@linkstart{#1}{#2}}}
-  \makeatother
 \fi
 
 % Nustatomas PDF pavadinimas ir autorius
-\makeatletter
 \AtBeginDocument{
     \hypersetup{pdftitle = {\@title}}
     \@ifundefined{@secondauthor}{
@@ -370,7 +373,16 @@
         \hypersetup{pdfauthor = {\@author\ and \@secondauthor}}
     }
 }
-\makeatother
+
+% Paimta iš https://tex.stackexchange.com/a/330535
+\RequirePackage{bookmark}
+\newcommand*{\sectionbookmark}[1][]{%
+  \bookmark[%
+    level=section,%
+    dest=\@currentHref,%
+    #1%
+  ]%
+}
 
 % Algoritmai apjuosiami kraštine
 \RequirePackage[boxed]{algorithm}
@@ -380,7 +392,5 @@
 \captionsetup[algorithm]{name=pav.,labelformat=alg,labelsep=space}
 
 % Algoritmų numeracija turi sutapti su paveiksliukų
-\makeatletter
 \let\c@algorithm\c@figure
 \let\ftype@algorithm\ftype@figure
-\makeatother
