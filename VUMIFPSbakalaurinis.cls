@@ -76,6 +76,7 @@
     backend=biber,
     sortcites=true,
     sorting=anyt,
+    giveninits=true,
     style=iso-alphabetic,
     abbreviate=true,
     minalphanames=3,
@@ -135,6 +136,8 @@
     {Tituliniame puslapyje nenurodyta katedra (komanda \protect\department)}
   \checkifdefined{@supervisor}%
     {Tituliniame puslapyje nenurodytas darbo vadovas (komanda \protect\supervisor)}
+  \checkifdefined{@reviewer}%
+    {Tituliniame puslapyje nenurodytas darbo recenzentas (komanda \protect\reviewer)}
   % Specialiai pašaliname titulinio puslapio numerį (nors jo ir šiaip nėra),
   % kad nerodytų įspėjimo dėl pakartotinai naudojamo 1 puslapio numerio
   \pagenumbering{gobble}%
