@@ -14,7 +14,7 @@
 % Bakalauro baigiamojo darbo apiforminimas pagal Vilniaus universiteto
 % Matematikos ir informatikos fakulteto Programų sistemų katedros reikalavimus
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{VUMIFPSbakalaurinis}[2023/01/30 1.4 VU MIF SE bachelor thesis class]
+\ProvidesClass{VUMIFPSbakalaurinis}[2023/03/12 1.4.1 VU MIF SE bachelor thesis class]
 \LoadClass[12pt, a4paper]{article}
 \RequirePackage{LTPlius}  % Nustatymų sulietuvinimas
 \RequirePackage{fontspec} % Šrifto pasirinkimui
@@ -76,6 +76,7 @@
     backend=biber,
     sortcites=true,
     sorting=anyt,
+    giveninits=true,
     style=iso-alphabetic,
     abbreviate=true,
     minalphanames=3,
@@ -131,10 +132,20 @@
 }
 
 \renewcommand\maketitle{\begin{titlepage}%
+  \checkifdefined{@university}%
+    {Tituliniame puslapyje nenurodytas universitetas (komanda \protect\university)}
+  \checkifdefined{@faculty}%
+    {Tituliniame puslapyje nenurodytas fakultetas (komanda \protect\faculty)}
   \checkifdefined{@department}%
-    {Tituliniame puslapyje nenurodyta katedra (komanda \protect\department)}
+    {Tituliniame puslapyje nenurodyta studijų programa (komanda \protect\department)}
+  \checkifdefined{@papertype}%
+    {Tituliniame puslapyje nenurodytas darbo tipas (komanda \protect\papertype)}
+  \checkifdefined{@author}%
+    {Tituliniame puslapyje nenurodytas darbo autorius (komanda \protect\author)}
   \checkifdefined{@supervisor}%
     {Tituliniame puslapyje nenurodytas darbo vadovas (komanda \protect\supervisor)}
+  \checkifdefined{@reviewer}%
+    {Tituliniame puslapyje nenurodytas darbo recenzentas (komanda \protect\reviewer)}
   % Specialiai pašaliname titulinio puslapio numerį (nors jo ir šiaip nėra),
   % kad nerodytų įspėjimo dėl pakartotinai naudojamo 1 puslapio numerio
   \pagenumbering{gobble}%
