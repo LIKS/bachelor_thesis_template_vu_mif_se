@@ -132,8 +132,16 @@
 }
 
 \renewcommand\maketitle{\begin{titlepage}%
+  \checkifdefined{@university}%
+    {Tituliniame puslapyje nenurodytas universitetas (komanda \protect\university)}
+  \checkifdefined{@faculty}%
+    {Tituliniame puslapyje nenurodytas fakultetas (komanda \protect\faculty)}
   \checkifdefined{@department}%
-    {Tituliniame puslapyje nenurodyta katedra (komanda \protect\department)}
+    {Tituliniame puslapyje nenurodyta studijų programa (komanda \protect\department)}
+  \checkifdefined{@papertype}%
+    {Tituliniame puslapyje nenurodytas darbo tipas (komanda \protect\papertype)}
+  \checkifdefined{@author}%
+    {Tituliniame puslapyje nenurodytas darbo autorius (komanda \protect\author)}
   \checkifdefined{@supervisor}%
     {Tituliniame puslapyje nenurodytas darbo vadovas (komanda \protect\supervisor)}
   \checkifdefined{@reviewer}%
