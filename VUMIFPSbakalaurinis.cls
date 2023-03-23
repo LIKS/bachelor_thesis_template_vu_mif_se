@@ -90,6 +90,9 @@
     references = {Šaltiniai},
     in = {},
     urlalso = {prieiga per internetą},
+    urlfrom = {prieiga per internetą},
+    urlseen = {žiūrėta},
+    online = {internete},
 }
 
 % Autorius rašomas kaip Vardas Pavardė, ne Pavardė, Vardas
