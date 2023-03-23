@@ -64,20 +64,32 @@
     note={172 psl.},
 }
 
+% urldate laukas nurodo, kada šaltinis buvo žiūrėtas
 @online{PvzElPubLt,
     author={A. Pavardenis and B. Pavardonis and C. Šavardauskas},
     title={Elektroninės publikacijos pavadinimas},
+    url={https://example.com/kelias/iki/straipsnio},
     year={2004},
-    url={https://example.com/kelias/iki/straipsnio.pdf},
-    note={Tikrinta 2015-02-01},
+    urldate={2015-02-01},
 }
 
 @online{PvzElPubEn,
     author={A. Surname and B. Tsurname and C. Usurname},
     title={Online Source Title},
-    url={https://example.com/path/to/the/article.pdf},
+    url={https://example.com/path/to/the/article},
     year={2004},
-    note={Tikrinta 2015-02-01},
+    urldate={2015-02-01},
+}
+
+% Bakalauro darbo citavimas. Kadangi nėra @bachelorsthesis citavimo tipo,
+% panaudojame @thesis ir nurodome type={bathesis}.
+@thesis{PvzBakLt,
+    author={A. Pavardonis},
+    title={Bakalauro darbo pavadinimas},
+    school={Universiteto pavadinimas},
+    type={bathesis},
+    address={Vilnius},
+    year={2005},
 }
 
 @mastersthesis{PvzMagistrLt,
@@ -91,5 +103,6 @@
     author={A. Surname},
     title={Title of PhD thesis},
     school={Title of university},
+    address={London},
     year={2005},
 }

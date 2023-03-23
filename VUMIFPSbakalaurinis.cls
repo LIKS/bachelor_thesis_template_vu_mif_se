@@ -85,11 +85,17 @@
     minnames=4,
 ]{biblatex}
 
-% Literatūros sąrašą reikia pervadinti
 \DefineBibliographyStrings{lithuanian}{%
+    % Literatūros sąrašas.
     references = {Šaltiniai},
     in = {},
-    urlalso = {nuoroda}
+    % Terminai, vartojami biblatex-iso690 bibliografijos stiliuje.
+    % Žr. https://github.com/michal-h21/biblatex-iso690/wiki/Translation-Guideline
+    urlalso = {prieiga per internetą},
+    urlfrom = {prieiga per internetą},
+    urlseen = {žiūrėta},
+    % Žr. https://terminai.vlkk.lt/konsultacijos/1986-on-line-prijungtas-prijungtis
+    online = {internetinis},
 }
 
 % Autorius rašomas kaip Vardas Pavardė, ne Pavardė, Vardas
