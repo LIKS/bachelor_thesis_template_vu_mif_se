@@ -85,10 +85,12 @@
     minnames=4,
 ]{biblatex}
 
-% Literatūros sąrašą reikia pervadinti
 \DefineBibliographyStrings{lithuanian}{%
+    % Literatūros sąrašas.
     references = {Šaltiniai},
     in = {},
+    % Terminai, vartojami biblatex-iso690 bibliografijos stiliuje.
+    % Žr. https://github.com/michal-h21/biblatex-iso690/wiki/Translation-Guideline
     urlalso = {prieiga per internetą},
     urlfrom = {prieiga per internetą},
     urlseen = {žiūrėta},
