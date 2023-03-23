@@ -92,7 +92,8 @@
     urlalso = {prieiga per internetą},
     urlfrom = {prieiga per internetą},
     urlseen = {žiūrėta},
-    online = {internete},
+    % Žr. https://terminai.vlkk.lt/konsultacijos/1986-on-line-prijungtas-prijungtis
+    online = {internetinis},
 }
 
 % Autorius rašomas kaip Vardas Pavardė, ne Pavardė, Vardas
