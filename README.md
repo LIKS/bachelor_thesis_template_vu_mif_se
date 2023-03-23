@@ -1,4 +1,4 @@
-# Vilniaus universiteto Programų sistemų bakalauro darbo LaTeX šablonas
+## Vilniaus universiteto Programų sistemų bakalauro darbo LaTeX šablonas
 
 ## Pasiruošimas
 
