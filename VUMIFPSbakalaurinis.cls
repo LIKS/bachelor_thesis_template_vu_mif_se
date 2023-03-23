@@ -89,7 +89,7 @@
 \DefineBibliographyStrings{lithuanian}{%
     references = {Šaltiniai},
     in = {},
-    urlalso = {pasiekiamas per},
+    urlalso = {prieiga per internetą},
 }
 
 % Autorius rašomas kaip Vardas Pavardė, ne Pavardė, Vardas
