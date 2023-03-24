@@ -291,26 +291,23 @@
         {\normalfont\Large\bfseries}%
 }
 
-% Priedo sekcijų formatavimas turiniui
 \renewcommand{\appendix}{%
-    \renewcommand{\section}{%
+    \@ifundefined{@firstappendix}{%
+        \newcounter{appendixcounter}%
+        \sectionnonum{Priedai}%
+        \newcommand{\@firstappendix}{}%
+        \newcommand{\@appendix}{nr. \arabic{appendixcounter}}%
+    }{%
         \cleardoublepage%
-        \secdef\@Appendix\@sAppendix%
     }%
-    \setcounter{section}{0}%
-    \renewcommand{\thesection}{nr. \arabic{section}}%
-    % Pataisymas, kad PDF žymėse pridėtų kaip atskirą skyrių
-    % (be šio pataisymo prideda kaip praeito skyriaus poskyrį)
-    \phantomsection%
-    % Pridedame į turinį
-    \addcontentsline{toc}{section}{Priedai}%
+    \secdef\@Appendix\@sAppendix%
 }
 
 \def\@Appendix[#1]#2{%
-    \refstepcounter{section}%
+    \refstepcounter{appendixcounter}%
     \addcontentsline{toc}{subsection}%
-        {\arabic{section} priedas.~#2}%
-    {\large\bfseries\appendixname\ \thesection\par
+        {\arabic{appendixcounter} priedas.~#2}%
+    {\large\bfseries\appendixname\ \@appendix\par
      #2\par}% \nohyphens\centering#2\par}%
     \sectionmark{#1}\vspace{\baselineskip}%
     \footnotesize%

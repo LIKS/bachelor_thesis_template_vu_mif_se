@@ -38,11 +38,11 @@ Instaliuoti [MacTex](https://tug.org/mactex).
 Įvykdyti vieną iš:  
 - `make`  
 - `make pdf`  
-- `latexmk -lualatex -halt-on-error bakalaurinis.tex` (ta pati komanda, kurią įvykdo kiti du variantai)
+- `latexmk --lualatex --file-line-error --halt-on-error bakalaurinis.tex` (ta pati komanda, kurią įvykdo kiti du variantai)
 
 ### Windows
 
-Įvykdyti `latexmk -lualatex -halt-on-error bakalaurinis.tex`.
+Įvykdyti `latexmk --lualatex --file-line-error --halt-on-error bakalaurinis.tex`.
 
 ## Kitos naudingos komandos
 

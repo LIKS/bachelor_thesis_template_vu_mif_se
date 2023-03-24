@@ -5,7 +5,7 @@ PDF_NAME:=$(NAME).pdf
 .PHONY: pdf ubuntu wordcount check clean
 
 pdf:
-	latexmk -lualatex -halt-on-error $(TEX_NAME)
+	latexmk --lualatex --file-line-error --halt-on-error $(TEX_NAME)
 	open kursinis.pdf || xdg-open $(PDF_NAME)
 
 ubuntu:
