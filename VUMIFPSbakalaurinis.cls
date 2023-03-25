@@ -60,7 +60,6 @@
 \newcommand{\institute}[1]{\def\@institute{#1}}
 \newcommand{\supervisor}[1]{\def\@supervisor{#1}}
 \newcommand{\reviewer}[1]{\def\@reviewer{#1}}
-\newcommand{\status}[1]{\def\@status{#1}}
 \newcommand{\titleineng}[1]{\def\@titleineng{#1}}
 \newcommand{\secondauthor}[1]{\def\@secondauthor{#1}}
 \newcommand{\addsignatureplaces}{\def\@addsignatureplaces}
@@ -127,7 +126,7 @@
     % teksto išdėstymas neturėtų smarkiai keistis
     \@ifundefined{@addsignatureplaces}{\qquad}{%
         \parbox[t]{2.5cm}{%
-            \makebox[2.5cm]{\raisebox{-0.5ex}{\scriptsize{(parašas)}}}%
+            \makebox[2.5cm]{\raisebox{-0.9ex}{\scriptsize{(parašas)}}}%
         }}
 }
 
@@ -147,8 +146,6 @@
     {Tituliniame puslapyje nenurodyta studijų programa (komanda \protect\department)}
   \checkifdefined{@papertype}%
     {Tituliniame puslapyje nenurodytas darbo tipas (komanda \protect\papertype)}
-  \checkifdefined{@author}%
-    {Tituliniame puslapyje nenurodytas darbo autorius (komanda \protect\author)}
   \checkifdefined{@supervisor}%
     {Tituliniame puslapyje nenurodytas darbo vadovas (komanda \protect\supervisor)}
   \checkifdefined{@reviewer}%
@@ -294,26 +291,23 @@
         {\normalfont\Large\bfseries}%
 }
 
-% Priedo sekcijų formatavimas turiniui
 \renewcommand{\appendix}{%
-    \renewcommand{\section}{%
+    \@ifundefined{@firstappendix}{%
+        \newcounter{appendixcounter}%
+        \sectionnonum{Priedai}%
+        \newcommand{\@firstappendix}{}%
+        \newcommand{\@appendix}{nr. \arabic{appendixcounter}}%
+    }{%
         \cleardoublepage%
-        \secdef\@Appendix\@sAppendix%
     }%
-    \setcounter{section}{0}%
-    \renewcommand{\thesection}{nr. \arabic{section}}%
-    % Pataisymas, kad PDF žymėse pridėtų kaip atskirą skyrių
-    % (be šio pataisymo prideda kaip praeito skyriaus poskyrį)
-    \phantomsection%
-    % Pridedame į turinį
-    \addcontentsline{toc}{section}{Priedai}%
+    \secdef\@Appendix\@sAppendix%
 }
 
 \def\@Appendix[#1]#2{%
-    \refstepcounter{section}%
+    \refstepcounter{appendixcounter}%
     \addcontentsline{toc}{subsection}%
-        {\arabic{section} priedas.~#2}%
-    {\large\bfseries\appendixname\ \thesection\par
+        {\arabic{appendixcounter} priedas.~#2}%
+    {\large\bfseries\appendixname\ \@appendix\par
      #2\par}% \nohyphens\centering#2\par}%
     \sectionmark{#1}\vspace{\baselineskip}%
     \footnotesize%
