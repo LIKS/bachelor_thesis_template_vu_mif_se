@@ -291,6 +291,7 @@
         {\normalfont\Large\bfseries}%
 }
 
+% Priedų formatavimas
 \renewcommand{\appendix}{%
     \@ifundefined{@firstappendix}{%
         \newcounter{appendixcounter}%
