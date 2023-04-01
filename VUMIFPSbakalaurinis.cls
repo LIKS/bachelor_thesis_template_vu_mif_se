@@ -383,7 +383,7 @@
     \@ifundefined{@secondauthor}{
         \hypersetup{pdfauthor = {\@author}}
     }{
-        \hypersetup{pdfauthor = {\@author\ and \@secondauthor}}
+        \hypersetup{pdfauthor = {\@author\ ir \@secondauthor}}
     }
 }
 
