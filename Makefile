@@ -6,7 +6,7 @@ PDF_NAME:=$(NAME).pdf
 
 pdf:
 	latexmk --lualatex --file-line-error --halt-on-error $(TEX_NAME)
-	open kursinis.pdf || xdg-open $(PDF_NAME)
+	open $(PDF_NAME) || xdg-open $(PDF_NAME)
 
 ubuntu:
 	@echo "Diegiamas LaTeX (LuaTeX, XeTeX ir kt.)"

@@ -291,6 +291,7 @@
         {\normalfont\Large\bfseries}%
 }
 
+% Priedų formatavimas
 \renewcommand{\appendix}{%
     \@ifundefined{@firstappendix}{%
         \newcounter{appendixcounter}%
@@ -382,7 +383,7 @@
     \@ifundefined{@secondauthor}{
         \hypersetup{pdfauthor = {\@author}}
     }{
-        \hypersetup{pdfauthor = {\@author\ and \@secondauthor}}
+        \hypersetup{pdfauthor = {\@author\ ir \@secondauthor}}
     }
 }
 
