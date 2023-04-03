@@ -1,0 +1,15 @@
+* text=auto
+
+*.tex text
+*.cls text
+*.sty text
+*.bib text
+*.cfg text
+*.md text
+Makefile text
+
+*.pdf binary
+*.png binary
+*.jpg binary
+*.ttf binary
+*.otf binary
