@@ -1,27 +1,31 @@
 NAME:=bakalaurinis
 TEX_NAME:=$(NAME).tex
 PDF_NAME:=$(NAME).pdf
-
 LATEXMK_BASE_FLAGS:=--lualatex --file-line-error --halt-on-error --Werror
 
-.PHONY: pdf ubuntu wordcount check clean
-
+.PHONY: pdf
 pdf:
 	latexmk $(LATEXMK_BASE_FLAGS) $(TEX_NAME)
 	open $(PDF_NAME) || xdg-open $(PDF_NAME)
 
-watch:
+.PHONY: watch
+watch: pdf
 	latexmk $(LATEXMK_BASE_FLAGS) --pvc --view=none $(TEX_NAME) 
 
+.PHONY: ubuntu
 ubuntu:
 	@echo "Diegiamas LaTeX (LuaTeX, XeTeX ir kt.)"
 	sudo apt-get install texlive-full
 
+.PHONY: wordcount
 wordcount:
 	texcount -total -utf8 $(TEX_NAME)
 
+.PHONY: check
 check:
 	chktex $(TEX_NAME)
 
+.PHONY: clean
 clean:
-	git clean -dfX
+	rm -f $(wildcard *.out *.run.xml *.log *.blg *.bbl *.aux \
+	*.toc *.bcf *.synctex.gz *.fdb_latexmk *.fls *.xdv *.nav *.snm)
