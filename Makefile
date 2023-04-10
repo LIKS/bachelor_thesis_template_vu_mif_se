@@ -1,16 +1,16 @@
 NAME:=bakalaurinis
 TEX_NAME:=$(NAME).tex
 PDF_NAME:=$(NAME).pdf
-LATEXMK_BASE_FLAGS:=--lualatex --file-line-error --halt-on-error --Werror
+LATEXMK_BASE_FLAGS:=-lualatex -file-line-error -Werror
 
 .PHONY: pdf
 pdf:
-	latexmk $(LATEXMK_BASE_FLAGS) $(TEX_NAME)
-	open $(PDF_NAME) || xdg-open $(PDF_NAME)
+	latexmk $(LATEXMK_BASE_FLAGS) -halt-on-error $(TEX_NAME)
+	open $(PDF_NAME) || setsid xdg-open $(PDF_NAME)
 
 .PHONY: watch
 watch: pdf
-	latexmk $(LATEXMK_BASE_FLAGS) --pvc --view=none $(TEX_NAME) 
+	latexmk $(LATEXMK_BASE_FLAGS) -interaction=nonstopmode -pvc -view=none $(TEX_NAME) 
 
 .PHONY: ubuntu
 ubuntu:

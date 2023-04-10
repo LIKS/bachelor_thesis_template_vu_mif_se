@@ -1,4 +1,4 @@
-## Vilniaus universiteto Programų sistemų bakalauro darbo LaTeX šablonas
+## Vilniaus universiteto Programų sistemų bakalauro baigiamojo darbo LaTeX šablonas
 
 ## Pasiruošimas
 
@@ -38,11 +38,11 @@ Instaliuoti [MacTex](https://tug.org/mactex).
 Įvykdyti vieną iš:  
 - `make`  
 - `make pdf`  
-- `latexmk --lualatex bakalaurinis.tex`
+- `latexmk -lualatex bakalaurinis.tex`
 
 ### Windows
 
-Įvykdyti `latexmk --lualatex bakalaurinis.tex`.
+Įvykdyti `latexmk -lualatex bakalaurinis.tex`.
 
 ## Kitos naudingos komandos
 
