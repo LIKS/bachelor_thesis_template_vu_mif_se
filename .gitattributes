@@ -1,7 +1,7 @@
 # Tekstinių failų eilučių pabaigų valdymas.
 # Leidžiame git pačiam nuspręsti, kurie failai
 # yra tekstiniai, tie failai į repozitoriją
-# išsaugomi su LF eilutės pabaigomis.
+# išsaugomi su LF eilučių pabaigomis.
 * text=auto
 
 # Tikrai tekstiniai failai.

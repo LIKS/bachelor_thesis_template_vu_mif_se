@@ -71,13 +71,14 @@
 \RequirePackage[
     alldates=iso,
     seconds=true,
-    autolang=none,
+    % pakeičiame žodžių skaidymą skiemenimis, kai langid nėra lithuanian
+    autolang=hyphen,
     backend=biber,
     sortcites=true,
     sorting=anyt,
     giveninits=true,
     style=iso-alphabetic,
-    abbreviate=true,
+    abbreviate=false,
     minalphanames=3,
     maxalphanames=3,
     maxnames=9,
