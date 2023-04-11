@@ -1,0 +1,14 @@
+# Tekstinių failų eilučių pabaigų valdymas.
+# Leidžiame git pačiam nuspręsti, kurie failai
+# yra tekstiniai, tie failai į repozitoriją
+# išsaugomi su LF eilučių pabaigomis.
+* text=auto
+
+# Tikrai tekstiniai failai.
+*.tex text
+*.cls text
+*.sty text
+*.bib text
+*.cfg text
+*.md text
+Makefile text

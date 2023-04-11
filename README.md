@@ -1,4 +1,4 @@
-## Vilniaus universiteto Programų sistemų bakalauro darbo LaTeX šablonas
+## Vilniaus universiteto Programų sistemų bakalauro baigiamojo darbo LaTeX šablonas
 
 ## Pasiruošimas
 
@@ -38,16 +38,17 @@ Instaliuoti [MacTex](https://tug.org/mactex).
 Įvykdyti vieną iš:  
 - `make`  
 - `make pdf`  
-- `latexmk --lualatex --file-line-error --halt-on-error bakalaurinis.tex` (ta pati komanda, kurią įvykdo kiti du variantai)
+- `latexmk -lualatex bakalaurinis.tex`
 
 ### Windows
 
-Įvykdyti `latexmk --lualatex --file-line-error --halt-on-error bakalaurinis.tex`.
+Įvykdyti `latexmk -lualatex bakalaurinis.tex`.
 
 ## Kitos naudingos komandos
 
 ### Linux / macOS
 
+- nuolatinis perkompiliavimas dokumentui pasikeitus: `make watch`
 - dokumento žodžių skaičius (apytikslis): `make wordcount`  
 - paprastų klaidų patikrinimas (pastaba: praneša apie daugybę dalykų, iš kurių nebūtinai visi aktualūs): `make check`  
 - nereikalingų failų išvalymas: `make clean`
