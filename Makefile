@@ -1,7 +1,7 @@
 NAME:=bakalaurinis
 TEX_NAME:=$(NAME).tex
 PDF_NAME:=$(NAME).pdf
-LATEXMK_BASE_FLAGS:=-lualatex -file-line-error -Werror
+LATEXMK_BASE_FLAGS:=-lualatex -file-line-error -Werror -emulate-aux-dir -aux-directory=out
 
 .PHONY: pdf
 pdf:
@@ -27,5 +27,6 @@ check:
 
 .PHONY: clean
 clean:
+	rm -rf out/
 	rm -f $(wildcard *.out *.run.xml *.log *.blg *.bbl *.aux \
 	*.toc *.bcf *.synctex.gz *.fdb_latexmk *.fls *.xdv *.nav *.snm)

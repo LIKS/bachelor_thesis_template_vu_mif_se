@@ -14,7 +14,7 @@
 % Bakalauro baigiamojo darbo apiforminimas pagal Vilniaus universiteto
 % Matematikos ir informatikos fakulteto Programų sistemų katedros reikalavimus
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{VUMIFPSbakalaurinis}[2023/03/12 1.4.1 VU MIF SE bachelor thesis class]
+\ProvidesClass{VUMIFPSbakalaurinis}[2023/04/30 1.5 VU MIF SE bachelor thesis class]
 \LoadClass[12pt, a4paper]{article}
 \RequirePackage{LTPlius}  % Nustatymų sulietuvinimas
 \RequirePackage{fontspec} % Šrifto pasirinkimui
@@ -37,7 +37,7 @@
     top=2cm,
     right=1.5cm,
     bottom=2cm,
-    footskip=0.6cm,
+    footskip=0.7cm,
 ]{geometry}  % Lapo paraštės
 \sloppy  % Tolygiai paskirsto tekstą nuo kairės iki dešinės paraštės
 \RequirePackage[titles]{tocloft} % Turinio eilučių išlygiavimo nustatymui
@@ -88,7 +88,7 @@
 \DefineBibliographyStrings{lithuanian}{%
     % Literatūros sąrašas.
     references = {Šaltiniai},
-    in = {},
+    in = {iš},
     % Terminai, vartojami biblatex-iso690 bibliografijos stiliuje.
     % Žr. https://github.com/michal-h21/biblatex-iso690/wiki/Translation-Guideline
     urlalso = {prieiga per internetą},
@@ -98,6 +98,28 @@
     online = {internetinis},
 }
 
+% Pliuso ženklas, kuris rodomas esant >3 autoriams, sumažinamas ir pakeliamas
+\renewcommand*{\labelalphaothers}{\textsuperscript{+}}
+
+% Ignoruojame laukus, kurie padaro, kad URL būtų spausdinami nestandartiškai
+% (pvz. „Prieiga per internetą arXiv: <arXiv id>“ ir pan.)
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldset=eprint, null]
+      \step[fieldset=eprinttype, null]
+      \step[fieldset=eprintclass, null]
+    } 
+  }
+}
+
+
+% Biblatex-iso690 pakeitimai
+
+% DOI laukas turėtų spausdinti pilną URL, ne tik identifikatorių. Pakeista iš
+% https://github.com/michal-h21/biblatex-iso690/blob/7ae03dbdff1f187cfead57c5108a73a6b5021f68/iso.bbx#L377
+\DeclareFieldFormat{doi}{\addcolon\space\url{https://doi.org/#1}}
+
 % Autorius rašomas kaip Vardas Pavardė, ne Pavardė, Vardas
 \DeclareNameAlias{default}{given-family}
 % Skirtukai tarp autorių padaromi kableliais
@@ -106,18 +128,32 @@
 % Nepaverčiame pavardžių didžiosiomis raidėmis
 \renewcommand{\familynameformat}[1]{#1}
 
-% Pliuso ženklas, kuris rodomas esant >3 autoriams, sumažinamas ir pakeliamas
-\renewcommand*{\labelalphaothers}{\textsuperscript{+}}
+% Padarome, kad nepridėtų [internetinis] prie šaltinių, turinčių
+% url lauką. Nukopijuota ir pakeista iš
+% https://github.com/michal-h21/biblatex-iso690/blob/7ae03dbdff1f187cfead57c5108a73a6b5021f68/iso.bbx#L721-L750
+\renewbibmacro*{medium-type}{%
+  \iffieldundef{howpublished}{}% Don't print anything
+    {\ifboolexpr{
+        test {\iffieldequalstr{howpublished}{online}}
+        and not test {\iftoggle{bbx:url}}
+        and not test {\ifentrytype{online}}
+      }
+        {}% Don't print 'howpublished' field
+        {\printfield{howpublished}}}%
+}
 
 % Nutildome įspėjimus dėl neegzistuojančių failų.
 \usepackage{silence}
 \WarningFilter{biblatex}{File 'american-iso.lbx' not found!}
 \WarningFilter{biblatex}{File 'lithuanian-iso.lbx' not found!}
 
+
 % TODO: pašalinti csquotes.cfg failą 2025 metais, nes csquotes
 % paketas pridėjo lietuvišką kabučių stilių 2023-01-24, tad nebereikės
 % specialios konfigūracijos, kai nauja versija bus plačiai prieinama
 \RequirePackage[style=lithuanian]{csquotes}
+
+\RequirePackage[babel=true]{microtype}
 
 % -------------------------------
 % Titulinio puslapio formatavimas
@@ -135,7 +171,7 @@
     % Patikriname, ar visa reikalinga informacija tituliniam puslapiui
     % buvo nurodyta. #1 yra tikrinama reikšmė (be \ priekyje),
     % #2 - klaidos pranešimas.
-    \@ifundefined{#1}{\PackageError{VUMIF}{#2}{Add the missing command}}%
+    \@ifundefined{#1}{\ClassError{VUMIF}{#2}{Add the missing command}}%
 }
 
 \renewcommand\maketitle{\begin{titlepage}%
@@ -166,7 +202,7 @@
      \null\vfil
      \vskip 2.5cm
      {\singlespacing \LARGE \textbf{\@title} \par}
-     {\singlespacing \Large \textbf{\@titleineng} \par}%
+     {\singlespacing \Large \textbf{\textenglish{\@titleineng}} \par}%
      \vskip 0.8cm
      {\large \@papertype}%
   \end{center}
@@ -196,7 +232,7 @@
   }
   \vfill
   \begin{center}
-    \large{\@date}%
+    \large\@date%
   \end{center}
   \vskip 0.4cm
   \@thanks
@@ -343,7 +379,7 @@
 \newcommand\keywords[1]{%
     \par \bigskip \par
     % \hangindent=\parindent   % Lygiavimas nuo antros eilutės
-    \noindent \textbf{Keywords:}\; \textbf{#1}
+    \noindent \textenglish{\textbf{Keywords:}\; \textbf{#1}}
 }
 \newcommand\raktiniaizodziai[1]{%
     \par \bigskip \par
@@ -355,15 +391,23 @@
 \let\oldfootnote\footnote
 \renewcommand{\footnote}[1]{\oldfootnote{\onehalfspacing #1}}
 
-% Panaikinami dvigubi tarpai tarp sąrašo elementų
+% Panaikiname dvigubus tarpus tarp sąrašo elementų,
+% jų įtrauką suvienodiname su aplinkinio teksto įtrauka
 \RequirePackage{enumitem}
-\setlist{nosep}
+\setlist{nosep, leftmargin=*}
+% Pirmo lygio sąrašui pridedame tarpus iš viršaus ir apačios,
+% jų įtrauką suvienodiname su pastraipos pirmos eilutės įtrauka
+\setlist[1]{topsep=0.2cm, labelindent=\parindent}
 
 % float paketas turi būti užkraunamas anksčiau nei hyperref
 \RequirePackage{float}
 
 % Nuorodos turinyje ir kitur padaromos aktyviomis
-\RequirePackage[hidelinks,linktoc=all]{hyperref}
+\RequirePackage[%
+    hidelinks,
+    linktoc=all,
+    pdflang=lt
+]{hyperref}
 
 % Pataisymas, kad veiktų kompiliavimas su LuaLaTeX.
 % TODO: galima pašalinti 2025 m., nes pataisymas jau yra
@@ -380,7 +424,10 @@
 
 % Nustatomas PDF pavadinimas ir autorius
 \AtBeginDocument{
-    \hypersetup{pdftitle = {\@title}}
+    \hypersetup{%
+        pdftitle = {\@title},
+        pdfsubject = {\@papertype}
+    }
     \@ifundefined{@secondauthor}{
         \hypersetup{pdfauthor = {\@author}}
     }{
@@ -408,3 +455,9 @@
 % Algoritmų numeracija turi sutapti su paveiksliukų
 \let\c@algorithm\c@figure
 \let\ftype@algorithm\ftype@figure
+
+% Komandos, skirtos pateikti angliškus terminų vertimus
+% Be skliaustų.
+\newcommand{\anglnb}[1]{angl.\ \textit{\textenglish{#1}}}
+% Su skliaustais.
+\newcommand{\angl}[1]{(\anglnb{#1})}
