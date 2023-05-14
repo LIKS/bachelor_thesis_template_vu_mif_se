@@ -14,7 +14,7 @@
 % Bakalauro baigiamojo darbo apiforminimas pagal Vilniaus universiteto
 % Matematikos ir informatikos fakulteto Programų sistemų katedros reikalavimus
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{VUMIFPSbakalaurinis}[2023/04/30 1.5 VU MIF SE bachelor thesis class]
+\ProvidesClass{VUMIFPSbakalaurinis}[2023/05/14 1.5.1 VU MIF SE bachelor thesis class]
 \LoadClass[12pt, a4paper]{article}
 \RequirePackage{LTPlius}  % Nustatymų sulietuvinimas
 \RequirePackage{fontspec} % Šrifto pasirinkimui
@@ -187,9 +187,6 @@
     {Tituliniame puslapyje nenurodytas darbo vadovas (komanda \protect\supervisor)}
   \checkifdefined{@reviewer}%
     {Tituliniame puslapyje nenurodytas darbo recenzentas (komanda \protect\reviewer)}
-  % Specialiai pašaliname titulinio puslapio numerį (nors jo ir šiaip nėra),
-  % kad nerodytų įspėjimo dėl pakartotinai naudojamo 1 puslapio numerio
-  \pagenumbering{gobble}%
   ~
   \begin{center}
       {\setstretch{1.3}\large \MakeUppercase{\@university} \\
@@ -237,8 +234,8 @@
   \vskip 0.4cm
   \@thanks
   \end{titlepage}%
-  % Tolesni puslapiai numeruojami įprastai
-  \pagenumbering{arabic}%
+  % Tolesni puslapiai numeruojami nuo antro
+  \setcounter{page}{2}%
   % Atlaisviname panaudotus kintamuosius
   \global\let\@outputtitle\relax
   \global\let\thanks\relax
