@@ -14,7 +14,7 @@
 % Bakalauro baigiamojo darbo apiforminimas pagal Vilniaus universiteto
 % Matematikos ir informatikos fakulteto Programų sistemų katedros reikalavimus
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{VUMIFPSbakalaurinis}[2023/05/14 1.5.1 VU MIF SE bachelor thesis class]
+\ProvidesClass{VUMIFPSbakalaurinis}[2023/06/01 1.6 VU MIF SE bachelor thesis class]
 \LoadClass[12pt, a4paper]{article}
 \RequirePackage{LTPlius}  % Nustatymų sulietuvinimas
 \RequirePackage{fontspec} % Šrifto pasirinkimui
@@ -39,7 +39,15 @@
     bottom=2cm,
     footskip=0.7cm,
 ]{geometry}  % Lapo paraštės
-\sloppy  % Tolygiai paskirsto tekstą nuo kairės iki dešinės paraštės
+% Tolygiai paskirsto tekstą nuo kairės iki dešinės paraštės
+% \sloppy alternatyva
+\tolerance 1414
+\hbadness 1414
+\emergencystretch 1.5em
+\hfuzz 0.3pt
+\widowpenalty=10000
+\vfuzz \hfuzz
+
 \RequirePackage[titles]{tocloft} % Turinio eilučių išlygiavimo nustatymui
 \RequirePackage{fancyhdr} % Puslapio numerio vietos nustatymui
 \pagestyle{fancy}
@@ -57,23 +65,25 @@
 \newcommand{\faculty}[1]{\def\@faculty{#1}}
 \newcommand{\papertype}[1]{\def\@papertype{#1}}
 \newcommand{\department}[1]{\def\@department{#1}}
-\newcommand{\institute}[1]{\def\@institute{#1}}
 \newcommand{\supervisor}[1]{\def\@supervisor{#1}}
 \newcommand{\reviewer}[1]{\def\@reviewer{#1}}
 \newcommand{\titleineng}[1]{\def\@titleineng{#1}}
 \newcommand{\secondauthor}[1]{\def\@secondauthor{#1}}
 \newcommand{\addsignatureplaces}{\def\@addsignatureplaces}
 
-% Pirmos eilutės paragrafe atitraukimas 1 cm
+% Pirma pastraipos eilutė atitraukiama 1 cm
 \setlength{\parindent}{1cm}
 
 % Nustatomas bibliografijos stilius
 \RequirePackage[
     alldates=iso,
     seconds=true,
+    % Iš publikavimo datos rodomi tik metai
+    date=year,
     % pakeičiame žodžių skaidymą skiemenimis, kai langid nėra lithuanian
     autolang=hyphen,
     backend=biber,
+    eprint=false,
     sortcites=true,
     sorting=anyt,
     giveninits=true,
@@ -100,18 +110,6 @@
 
 % Pliuso ženklas, kuris rodomas esant >3 autoriams, sumažinamas ir pakeliamas
 \renewcommand*{\labelalphaothers}{\textsuperscript{+}}
-
-% Ignoruojame laukus, kurie padaro, kad URL būtų spausdinami nestandartiškai
-% (pvz. „Prieiga per internetą arXiv: <arXiv id>“ ir pan.)
-\DeclareSourcemap{
-  \maps[datatype=bibtex]{
-    \map{
-      \step[fieldset=eprint, null]
-      \step[fieldset=eprinttype, null]
-      \step[fieldset=eprintclass, null]
-    } 
-  }
-}
 
 
 % Biblatex-iso690 pakeitimai
@@ -151,7 +149,7 @@
 % TODO: pašalinti csquotes.cfg failą 2025 metais, nes csquotes
 % paketas pridėjo lietuvišką kabučių stilių 2023-01-24, tad nebereikės
 % specialios konfigūracijos, kai nauja versija bus plačiai prieinama
-\RequirePackage[style=lithuanian]{csquotes}
+\RequirePackage[autostyle]{csquotes}
 
 \RequirePackage[babel=true]{microtype}
 
@@ -191,13 +189,10 @@
   \begin{center}
       {\setstretch{1.3}\large \MakeUppercase{\@university} \\
          \MakeUppercase{\@faculty} \\
-         \ifdefined\@institute
-             \MakeUppercase{\@institute} \\
-         \fi
          \MakeUppercase{\@department}\par }
 
      \null\vfil
-     \vskip 2.5cm
+     \vskip 3cm
      {\singlespacing \LARGE \textbf{\@title} \par}
      {\singlespacing \Large \textbf{\textenglish{\@titleineng}} \par}%
      \vskip 0.8cm
@@ -279,12 +274,10 @@
 
 \renewcommand\tableofcontents{%
     % Turinys su viengubu intervalu tarp eilučių
+    \sectionnonumnocontent{\contentsname
+        \@mkboth{%
+            \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
     \begin{singlespacing}%
-        \section*{%
-            \bf\normalsize\centering\MakeUppercase\contentsname%
-            \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
-        }%
-        \sectionbookmark{\contentsname}% Sukuriame PDF nuorodą į turinį
         \@starttoc{toc}%
     \end{singlespacing}%
     \newpage%
@@ -305,18 +298,18 @@
     \begingroup
       \parindent \z@ \rightskip \@pnumwidth
       \parfillskip -\@pnumwidth
-      \leavevmode {
+      \leavevmode
       \advance\leftskip\@tempdima
       \hskip -\leftskip
       % Skyrių pavadinimai paverčiami vien didžiosiomis raidėmis
-      \MakeUppercase{#1}}\nobreak\
+      \MakeUppercase{#1}\nobreak\
       \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}
      \hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
     \endgroup
   \fi}
 
 
-% Sekcija pradeda naują puslapį
+% Sekcija (skyrius) pradeda naują puslapį
 \renewcommand{\section}{%
     \cleardoublepage%
     \@startsection{section}{1}{\z@}%
@@ -367,9 +360,9 @@
 
 % Turinio skyrių indentavimo nustatymas. Kiekvienam skyriui nustatoma:
 % 1. Atitraukimo iš kairės plotis
-% 2. Vietos, skiriama skaičiams, plotis
-\renewcommand*\l@subsection{\@dottedtocline{2}{0.1cm}{0.87cm}}
-\renewcommand*\l@subsubsection{\@dottedtocline{3}{0.8cm}{1.22cm}}
+% 2. Vietos, skiriamos dalies numeriui, plotis
+\renewcommand*\l@subsection{\@dottedtocline{2}{0.63cm}{0.87cm}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{1.33cm}{1.22cm}}
 \renewcommand*\l@paragraph{\@dottedtocline{4}{1.5cm}{1.52cm}}
 
 % Raktinių žodžių komandos
@@ -384,9 +377,13 @@
     \noindent \textbf{Raktiniai žodžiai:}\; \textbf{#1}
 }
 
+% Padarome, kad išnašos visada būtų puslapio apačioje
+\RequirePackage[bottom]{footmisc}
 % Tarpai tarp išnašų eilučių nustatomi į 1,5 eilutės
 \let\oldfootnote\footnote
 \renewcommand{\footnote}[1]{\oldfootnote{\onehalfspacing #1}}
+% Tarpai tarp išnašų nustatomi į tokius pačius kaip ir tarp išnašų eilučių
+\setlength{\footnotesep}{11pt}
 
 % Panaikiname dvigubus tarpus tarp sąrašo elementų,
 % jų įtrauką suvienodiname su aplinkinio teksto įtrauka
@@ -443,15 +440,32 @@
 }
 
 % Algoritmai apjuosiami kraštine
-\RequirePackage[boxed]{algorithm}
+\RequirePackage[lined]{algorithm}
 
-% Algoritmai laikomi paveiksliukais, todėl turi vadintis pav.
 \DeclareCaptionLabelFormat{alg}{#2 #1}
-\captionsetup[algorithm]{name=pav.,labelformat=alg,labelsep=space}
+\captionsetup[algorithm]{name=algoritmas.,labelformat=alg,labelsep=space}
 
-% Algoritmų numeracija turi sutapti su paveiksliukų
-\let\c@algorithm\c@figure
-\let\ftype@algorithm\ftype@figure
+\RequirePackage{listings}
+
+% Sutvarkome lstlistings aplinką:
+% 1. pakeičiame pavadinimą į pav. (neaišku, kaip kitaip pavadinti,
+%    nes angliškas terminas „listing“ verčiamas kaip „sąrašas“)
+% 2. pavadinimą dedame apačioje
+% 3. apjuosiame kraštine
+% 4. numeruojame taip pat kaip ir paveiksliukus
+% https://tex.stackexchange.com/a/117538
+\DeclareCaptionLabelFormat{listing}{#2 #1}
+\captionsetup[lstlisting]{labelformat=listing, labelsep=space}
+\renewcommand\lstlistingname{pav.}
+\lstset{
+    captionpos=b,
+    frame=single,
+    breaklines=true
+}
+% https://tex.stackexchange.com/questions/462810/use-same-reference-count-for-lstlisting-and-figure-graphics
+\AtBeginDocument[A]{\let\c@lstlisting\c@figure}
+% % https://tex.stackexchange.com/questions/422131/how-to-use-the-same-numbering-counter-for-figures-tables-and-listings
+\let\ftype@listings\ftype@figure
 
 % Komandos, skirtos pateikti angliškus terminų vertimus
 % Be skliaustų.
