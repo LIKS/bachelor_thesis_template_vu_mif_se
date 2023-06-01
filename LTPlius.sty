@@ -16,12 +16,14 @@
 % This work consists of the file LTPlius.sty.
 
 % LTplius: bendri lietuviškų dokumentų nustatymai, nesantys
-% lietuviškame babel išplėtime.
-\NeedsTeXFormat{LaTeX2e}[1994/12/01]
-\ProvidesPackage{LTPlius}[2023/01/26 1.4.2 Lithuanian language
+% lietuviškame polyglossia išplėtime.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LTPlius}[2023/06/01 1.4.3 Lithuanian language
 additions]
 
 % Pakeitimai:
+% 2023.06.01 (1.4.3 versija)
+%    * Angliškame tekste pirma pastraipos eilutė įtraukiama kaip ir lietuviškame
 % 2023.01.26 (1.4.2 versija)
 %    * pašalintas indentfirst paketas, nes polyglossia paketas šituo pasirūpina
 %    * supaprastintas paveikslėlių antraščių nustatymas, rezultatas nepasikeitė
@@ -58,10 +60,11 @@ additions]
 % 2006.03.17
 %    * Pataisome ir \glqq kabutes L7x koduotėje.
 
-% Keisime keletą polyglossia parametrų
 \RequirePackage{polyglossia}
-\setdefaultlanguage{lithuanian}
+\setmainlanguage{lithuanian}
 \setotherlanguage{english}
+% Angliškame tekste pirma pastraipos eilutė atitraukiama
+\SetLanguageKeys{english}{indentfirst=true}
 
 % Kadangi skaičių trupmeninės dalys atskiriamos kableliu,
 % po jo standartiškai dedamas tarpelis nepageidaujamas
