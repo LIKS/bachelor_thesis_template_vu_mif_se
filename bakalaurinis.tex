@@ -18,7 +18,6 @@
 % Titulinio aprašas
 \university{Vilniaus universitetas}
 \faculty{Matematikos ir informatikos fakultetas}
-\institute{Informatikos institutas}  % Užkomentavus šią eilutę - institutas neįtraukiamas į titulinį
 \department{Programų sistemų bakalauro studijų programa}
 \papertype{Bakalauro baigiamasis darbas}
 \title{Programų sistemų kūrimo metodų tyrimas}
@@ -27,7 +26,7 @@
 % \secondauthor{Vardonis Pavardonis}   % Pridėti antrą autorių
 \supervisor{prof. habil. dr. Vardaitis Pavardaitis}
 \reviewer{doc. dr. Vardauskas Pavardauskas}
-\addsignatureplaces{} % prideda parašų vietas tituliniame puslapyje
+% \addsignatureplaces{} % prideda parašų vietas tituliniame puslapyje
 \date{Vilnius – \the\year}
 
 \bibliography{bibliografija}
@@ -46,13 +45,17 @@
 Glaustai aprašomas darbo turinys: pristatoma nagrinėta problema ir padarytos
 išvados. Santraukos apimtis ne didesnė nei 0,5 puslapio. Santraukų gale
 nurodomi darbo raktiniai žodžiai.
+
 % Nurodomi iki 5 svarbiausių temos raktinių žodžių (terminų).
 % Vienas terminas gali susidėti iš kelių žodžių.
 \raktiniaizodziai{raktinis žodis 1, raktinis žodis 2, raktinis žodis 3, raktinis žodis 4, raktinis žodis 5}
 
+\begin{english}
 \sectionnonumnocontent{Summary}
-Santrauka anglų kalba. Santraukos apimtis ne didesnė nei 0,5 puslapio.
+Santrauka anglų kalba. Santraukos apimtis ne didesnė nei 0,5 puslapio. Automatiškai naudojamos angliškos kabutės: \enquote{tekstas}.
+
 \keywords{keyword 1, keyword 2, keyword 3, keyword 4, keyword 5}
+\end{english}
 
 \tableofcontents
 
@@ -73,7 +76,7 @@ detalės: pradiniai duomenys, jų analizės ir apdorojimo metodai, sprendimų
 Medžiaga turi būti dėstoma aiškiai, pateikiant argumentus. Tekste dėstomas
 trečiuoju asmeniu, t.y. rašoma ne \enquote{aš manau}, bet „autorius mano“, „autoriaus
 nuomone“. Reikėtų vengti informacijos nesuteikiančių frazių, pvz., „...kaip jau
-buvo minėta...“, „...kaip visiems žinoma...“ ir pan., vengti grožinės
+buvo minėta...“, \enquote{...kaip visiems žinoma...} ir pan., vengti grožinės
 literatūros ar publicistinio stiliaus, gausių metaforų ar panašių meninės
 išraiškos priemonių.
 
@@ -88,19 +91,21 @@ PvzElPubLt, PvzElPubEn, PvzBakLt, PvzMagistrLt, PvzPhdEn}.
 Anglų kalbos terminų pateikimo pavyzdžiai: priklausomybių injekcija (\anglnb{dependency injection},
 dažnai trumpinama kaip \textit{DI}), saitų redaktorius \angl{linker}.
 
+Išnašų\footnote{Pirma išnaša.} pavyzdžiai\footnote{Antra išnaša.}.
+
 \subsection{Faktorialo algoritmas}
 
-\ref{alg:factorial} pav. pateiktas faktorialo algoritmas.
+\ref{alg:factorial} algoritmas parodo, kaip suskaičiuoti skaičiaus faktorialą.
 
 \begin{algorithm}
+\caption{Skaičiaus faktorialas}
 \begin{algorithmic}[1] % [1] padaro, kad eilutės būtų sunumeruotos
 \State $N\gets$ skaičius, kurio faktorialą skaičiuojame
 \State $F\gets 1$
-\For{$i := 2$ $to$ $N$}
+\For{$i := 2$ to $N$}
     \State $F\gets F \cdot i$
 \EndFor
 \end{algorithmic}
-\caption{Faktorialo algoritmas}
 \label{alg:factorial}
 \end{algorithm}
 
@@ -111,13 +116,21 @@ dažnai trumpinama kaip \textit{DI}), saitų redaktorius \angl{linker}.
 \subsection{Poskyris}
 \subsection{Poskyris}
 
-\sectionnonum{Rezultatai ir išvados}
-Rezultatų ir išvadų dalyje išdėstomi pagrindiniai darbo rezultatai (kažkas
-išanalizuota, kažkas sukurta, kažkas įdiegta), toliau pateikiamos išvados
-(daromi nagrinėtų problemų sprendimo metodų palyginimai, siūlomos
-rekomendacijos, akcentuojamos naujovės). Rezultatai ir išvados pateikiami
-sunumeruotų (gali būti hierarchiniai) sąrašų pavidalu. Darbo rezultatai turi
-atitikti darbo tikslą.
+\sectionnonum{Rezultatai}
+Rezultatų skyriuje išdėstomi pagrindiniai darbo rezultatai: kažkas išanalizuota,
+kažkas sukurta, kažkas įdiegta. Tarpinių žingsnių išdavos skirtos užtikrinti galutinio
+rezultato kokybę neturi būti pateikiami šiame skyriuje. Kalbant informatikos termi-
+nais, šiame skyriuje pateikiama darbo išvestis, kuri gali būti įvestimi kituose panašios
+tematikos darbuose. Rezultatai pateikiami sunumeruotų (gali būti hierarchiniai) sąrašų
+pavidalu. Darbo rezultatai turi atitikti darbo tikslą.
+
+\sectionnonum{Išvados}
+\begin{enumerate}[labelindent=0pt]
+    \item Išvadų skyriuje daromi nagrinėtų problemų sprendimo metodų palyginimai, siūlomos
+rekomendacijos, akcentuojamos naujovės.
+    \item Išvados pateikiamos sunumeruoto (gali būti hierarchinis) sąrašo pavidalu.
+    \item Darbo išvados turi atitikti darbo tikslą.
+\end{enumerate}
 
 \printbibliography[heading=bibintoc]  % Šaltinių sąraše nurodoma panaudota
 % literatūra, kitokie šaltiniai. Abėcėlės tvarka išdėstomi darbe panaudotų
