@@ -1,13 +1,13 @@
 ## Vilniaus universiteto Programų sistemų bakalauro baigiamojo darbo LaTeX šablonas
 
-## Pasiruošimas
-
 Šablonas naudoja:  
 - `latexmk` kompiliavimo paleidimui  
 - `lualatex` PDF generavimui  
 - `biblatex` ir `biber` bibliografijos tvarkymui  
 
 Pagrindinis šriftas yra [Palemonas](https://vlkk.lt/palemonas).
+
+## Pasiruošimas
 
 ### Linux
 
