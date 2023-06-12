@@ -149,7 +149,7 @@
 % TODO: pašalinti csquotes.cfg failą 2025 metais, nes csquotes
 % paketas pridėjo lietuvišką kabučių stilių 2023-01-24, tad nebereikės
 % specialios konfigūracijos, kai nauja versija bus plačiai prieinama
-\RequirePackage[autostyle]{csquotes}
+\RequirePackage[autostyle=true]{csquotes}
 
 \RequirePackage[babel=true]{microtype}
 
@@ -318,7 +318,7 @@
         {\normalfont\Large\bfseries}%
 }
 
-% Priedų formatavimas
+% Lietuviškų priedų formatavimas
 \renewcommand{\appendix}{%
     \@ifundefined{@firstappendix}{%
         \newcounter{appendixcounter}%
@@ -348,6 +348,29 @@
     \footnotesize
 }
 
+% Angliškų priedų formatavimas
+\newcommand{\appendixen}{%
+    \@ifundefined{@firstappendix}{%
+        \newcounter{appendixcounter}%
+        \sectionnonum{Appendixes}%
+        \newcommand{\@firstappendix}{}%
+        \newcommand{\@appendix}{\arabic{appendixcounter}}%
+    }{%
+        \cleardoublepage%
+    }%
+    \secdef\@AppendixEn\@sAppendix%
+}
+
+\def\@AppendixEn[#1]#2{%
+    \refstepcounter{appendixcounter}%
+    \addcontentsline{toc}{subsection}%
+        {\appendixname\ \arabic{appendixcounter}.~#2}%
+    {\large\bfseries\appendixname\ \@appendix\par
+     #2\par}% \nohyphens\centering#2\par}%
+    \sectionmark{#1}\vspace{\baselineskip}%
+    \footnotesize%
+}
+
 % Apibrėžiame ketvirto lygio skyrius
 \newcommand{\subsubsubsection}{\subsubparagraph}
 
@@ -363,7 +386,7 @@
 % 2. Vietos, skiriamos dalies numeriui, plotis
 \renewcommand*\l@subsection{\@dottedtocline{2}{0.63cm}{0.87cm}}
 \renewcommand*\l@subsubsection{\@dottedtocline{3}{1.33cm}{1.22cm}}
-\renewcommand*\l@paragraph{\@dottedtocline{4}{1.5cm}{1.52cm}}
+\renewcommand*\l@paragraph{\@dottedtocline{4}{2.03cm}{1.52cm}}
 
 % Raktinių žodžių komandos
 \newcommand\keywords[1]{%
@@ -400,7 +423,8 @@
 \RequirePackage[%
     hidelinks,
     linktoc=all,
-    pdflang=lt
+    pdflang=lt,
+    bookmarksnumbered=true,
 ]{hyperref}
 
 % Pataisymas, kad veiktų kompiliavimas su LuaLaTeX.
@@ -425,7 +449,7 @@
     \@ifundefined{@secondauthor}{
         \hypersetup{pdfauthor = {\@author}}
     }{
-        \hypersetup{pdfauthor = {\@author\ ir \@secondauthor}}
+        \hypersetup{pdfauthor = {\@author, \@secondauthor}}
     }
 }
 
