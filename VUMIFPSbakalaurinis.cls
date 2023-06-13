@@ -71,6 +71,12 @@
 \newcommand{\secondauthor}[1]{\def\@secondauthor{#1}}
 \newcommand{\addsignatureplaces}{\def\@addsignatureplaces}
 
+% Komanda, nustatanti darbo kalbą į anglų.
+\newcommand{\ThesisInEnglish}{%
+    \def\@ThesisEng{}
+    \setmainlanguage{english}
+    \setotherlanguage{lithuanian}}
+
 % Pirma pastraipos eilutė atitraukiama 1 cm
 \setlength{\parindent}{1cm}
 
@@ -161,7 +167,9 @@
     % teksto išdėstymas neturėtų smarkiai keistis
     \@ifundefined{@addsignatureplaces}{\qquad}{%
         \parbox[t]{2.5cm}{%
-            \makebox[2.5cm]{\raisebox{-0.9ex}{\scriptsize{(parašas)}}}%
+            \makebox[2.5cm]{\raisebox{-0.9ex}{\scriptsize
+                \@ifundefined{@ThesisEng}{(parašas)}{(signature)}%
+                }}%
         }}
 }
 
@@ -193,8 +201,13 @@
 
      \null\vfil
      \vskip 3cm
-     {\singlespacing \LARGE \textbf{\@title} \par}
-     {\singlespacing \Large \textbf{\textenglish{\@titleineng}} \par}%
+    \@ifundefined{@ThesisEng}{%
+        {\singlespacing \LARGE \textbf{\@title} \par}
+        {\singlespacing \Large \textbf{\textenglish{\@titleineng}} \par}%
+    }{%
+        {\singlespacing \LARGE \textbf{\@titleineng} \par}%
+        {\singlespacing \Large \textbf{\textlithuanian{\@title}} \par}
+    }%
      \vskip 0.8cm
      {\large \@papertype}%
   \end{center}
@@ -204,9 +217,15 @@
         \large
         \singlespacing
         {\begin{tabular}[t]{l l}%
-        \bigskip Atliko: &\; \@author \hfill \@signatureplace \\
-        \bigskip Darbo vadovas: &\; \@supervisor \hfill  \@signatureplace \\
-        Darbo recenzentas: &\; \@reviewer \hfill \@signatureplace
+        \@ifundefined{@ThesisEng}{%
+            \bigskip Atliko: &\; \@author \hfill \@signatureplace \\
+            \bigskip Darbo vadovas: &\; \@supervisor \hfill \@signatureplace \\
+            Darbo recenzentas: &\; \@reviewer \hfill \@signatureplace
+        }{%
+            \bigskip Author: &\; \@author \hfill \@signatureplace \\
+            \bigskip Supervisor: &\; \@supervisor \hfill \@signatureplace \\
+            Reviewer: &\; \@reviewer \hfill \@signatureplace
+        }%
         \end{tabular} \par}%
      \end{flushright}
   }{
@@ -215,10 +234,17 @@
         \large
         \singlespacing
         {\begin{tabular}[t]{l l}%
-        \bigskip Atliko: &\; \@author \hfill \@signatureplace \\
-        \bigskip &\; \@secondauthor \hfill \@signatureplace \\
-        \bigskip Darbo vadovas: &\; \@supervisor \hfill  \@signatureplace \\
-        Darbo recenzentas: &\; \@reviewer \hfill \@signatureplace
+        \@ifundefined{@ThesisEng}{%
+            \bigskip Atliko: &\; \@author \hfill \@signatureplace \\
+            \bigskip &\; \@secondauthor \hfill \@signatureplace \\
+            \bigskip Darbo vadovas: &\; \@supervisor \hfill \@signatureplace \\
+            Darbo recenzentas: &\; \@reviewer \hfill \@signatureplace
+        }{%
+            \bigskip Author: &\; \@author \hfill \@signatureplace \\
+            \bigskip &\; \@secondauthor \hfill \@signatureplace \\
+            \bigskip Supervisor: &\; \@supervisor \hfill \@signatureplace \\
+            Reviewer: &\; \@reviewer \hfill \@signatureplace
+        }%
         \end{tabular} \par}%
      \end{flushright}
   }
@@ -318,13 +344,18 @@
         {\normalfont\Large\bfseries}%
 }
 
-% Lietuviškų priedų formatavimas
+% Priedų formatavimas
 \renewcommand{\appendix}{%
     \@ifundefined{@firstappendix}{%
-        \newcounter{appendixcounter}%
-        \sectionnonum{Priedai}%
         \newcommand{\@firstappendix}{}%
-        \newcommand{\@appendix}{nr. \arabic{appendixcounter}}%
+        \newcounter{appendixcounter}%
+        \@ifundefined{@ThesisEng}{%
+            \sectionnonum{Priedai}%
+            \newcommand{\@appendix}{nr. \arabic{appendixcounter}}%
+        }{%
+            \sectionnonum{Appendixes}%
+            \newcommand{\@appendix}{\arabic{appendixcounter}}%
+        }%
     }{%
         \cleardoublepage%
     }%
@@ -333,8 +364,13 @@
 
 \def\@Appendix[#1]#2{%
     \refstepcounter{appendixcounter}%
-    \addcontentsline{toc}{subsection}%
-        {\arabic{appendixcounter} priedas.~#2}%
+    \@ifundefined{@ThesisEng}{%
+        \addcontentsline{toc}{subsection}%
+            {\arabic{appendixcounter} priedas.~#2}%
+    }{%
+        \addcontentsline{toc}{subsection}%
+            {\appendixname\ \arabic{appendixcounter}.~#2}%
+    }%
     {\large\bfseries\appendixname\ \@appendix\par
      #2\par}% \nohyphens\centering#2\par}%
     \sectionmark{#1}\vspace{\baselineskip}%
@@ -346,29 +382,6 @@
      \centering#1\par}% \nohyphens\centering#1\par}%
     \vspace{\baselineskip}%
     \footnotesize
-}
-
-% Angliškų priedų formatavimas
-\newcommand{\appendixen}{%
-    \@ifundefined{@firstappendix}{%
-        \newcounter{appendixcounter}%
-        \sectionnonum{Appendixes}%
-        \newcommand{\@firstappendix}{}%
-        \newcommand{\@appendix}{\arabic{appendixcounter}}%
-    }{%
-        \cleardoublepage%
-    }%
-    \secdef\@AppendixEn\@sAppendix%
-}
-
-\def\@AppendixEn[#1]#2{%
-    \refstepcounter{appendixcounter}%
-    \addcontentsline{toc}{subsection}%
-        {\appendixname\ \arabic{appendixcounter}.~#2}%
-    {\large\bfseries\appendixname\ \@appendix\par
-     #2\par}% \nohyphens\centering#2\par}%
-    \sectionmark{#1}\vspace{\baselineskip}%
-    \footnotesize%
 }
 
 % Apibrėžiame ketvirto lygio skyrius
