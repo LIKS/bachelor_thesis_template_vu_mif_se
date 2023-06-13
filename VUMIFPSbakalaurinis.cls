@@ -17,6 +17,15 @@
 \ProvidesClass{VUMIFPSbakalaurinis}[2023/06/01 1.6 VU MIF SE bachelor thesis class]
 \LoadClass[12pt, a4paper]{article}
 \RequirePackage{LTPlius}  % Nustatymų sulietuvinimas
+
+% Darbo kalba gali būti anglų
+\DeclareOption{english}{%
+    \def\@ThesisEng{}%
+    \setmainlanguage{english}%
+    \setotherlanguage{lithuanian}%
+}
+\ProcessOptions\relax
+
 \RequirePackage{fontspec} % Šrifto pasirinkimui
 % Teksto šriftas bus Palemonas.
 % Naujos Palemono versijos talpinamos
@@ -70,12 +79,6 @@
 \newcommand{\titleineng}[1]{\def\@titleineng{#1}}
 \newcommand{\secondauthor}[1]{\def\@secondauthor{#1}}
 \newcommand{\addsignatureplaces}{\def\@addsignatureplaces}
-
-% Komanda, nustatanti darbo kalbą į anglų.
-\newcommand{\ThesisInEnglish}{%
-    \def\@ThesisEng{}
-    \setmainlanguage{english}
-    \setotherlanguage{lithuanian}}
 
 % Pirma pastraipos eilutė atitraukiama 1 cm
 \setlength{\parindent}{1cm}
@@ -436,7 +439,7 @@
 \RequirePackage[%
     hidelinks,
     linktoc=all,
-    pdflang=lt,
+    pdflang={\@ifundefined{@ThesisEng}{lt}{en-US}},
     bookmarksnumbered=true,
 ]{hyperref}
 
@@ -477,12 +480,7 @@
 }
 
 % Algoritmai apjuosiami kraštine
-\RequirePackage[lined]{algorithm}
-
-\DeclareCaptionLabelFormat{alg}{#2 #1}
-\captionsetup[algorithm]{name=algoritmas.,labelformat=alg,labelsep=space}
-
-\RequirePackage{listings}
+\RequirePackage{algorithm}
 
 % Sutvarkome lstlistings aplinką:
 % 1. pakeičiame pavadinimą į pav. (neaišku, kaip kitaip pavadinti,
@@ -491,18 +489,28 @@
 % 3. apjuosiame kraštine
 % 4. numeruojame taip pat kaip ir paveiksliukus
 % https://tex.stackexchange.com/a/117538
-\DeclareCaptionLabelFormat{listing}{#2 #1}
-\captionsetup[lstlisting]{labelformat=listing, labelsep=space}
-\renewcommand\lstlistingname{pav.}
+\RequirePackage{listings}
 \lstset{
     captionpos=b,
     frame=single,
     breaklines=true
 }
-% https://tex.stackexchange.com/questions/462810/use-same-reference-count-for-lstlisting-and-figure-graphics
-\AtBeginDocument[A]{\let\c@lstlisting\c@figure}
-% % https://tex.stackexchange.com/questions/422131/how-to-use-the-same-numbering-counter-for-figures-tables-and-listings
-\let\ftype@listings\ftype@figure
+\@ifundefined{@ThesisEng}{%
+    % Teisingai formatuojame paveikslėlių antraštes.
+    \captionsetup*[figure]{labelsep=space}
+
+    \DeclareCaptionLabelFormat{alg}{#2 #1}
+    \captionsetup*[algorithm]{name=algoritmas.,labelformat=alg,labelsep=space}
+    \DeclareCaptionLabelFormat{listing}{#2 #1}
+    \captionsetup*[lstlisting]{labelformat=listing, labelsep=space}
+    \renewcommand\lstlistingname{pav.}
+    % https://tex.stackexchange.com/questions/462810/use-same-reference-count-for-lstlisting-and-figure-graphics
+    \AtBeginDocument[A]{\let\c@lstlisting\c@figure}
+    % % https://tex.stackexchange.com/questions/422131/how-to-use-the-same-numbering-counter-for-figures-tables-and-listings
+    \let\ftype@listings\ftype@figure
+}{%
+    \captionsetup*[figure]{labelsep=period}
+}
 
 % Komandos, skirtos pateikti angliškus terminų vertimus
 % Be skliaustų.
