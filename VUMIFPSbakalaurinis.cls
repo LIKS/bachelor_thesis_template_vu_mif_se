@@ -24,6 +24,9 @@
     \setmainlanguage{english}%
     \setotherlanguage{lithuanian}%
 }
+\DeclareOption{signatureplaces}{%
+    \def\@addsignatureplaces%
+}
 \ProcessOptions\relax
 
 \RequirePackage{fontspec} % Šrifto pasirinkimui
@@ -78,7 +81,6 @@
 \newcommand{\reviewer}[1]{\def\@reviewer{#1}}
 \newcommand{\titleineng}[1]{\def\@titleineng{#1}}
 \newcommand{\secondauthor}[1]{\def\@secondauthor{#1}}
-\newcommand{\addsignatureplaces}{\def\@addsignatureplaces}
 
 % Pirma pastraipos eilutė atitraukiama 1 cm
 \setlength{\parindent}{1cm}
@@ -284,6 +286,7 @@
   \global\let\supervisor\relax
   \global\let\@signatureplace\relax
   \global\let\checkifdefined\relax
+  \global\let\@addsignatureplaces\relax
   \setcounter{footnote}{0}%
   % Nustatome dokumentui 1,5 tarpo tarp eilučių intervalą
   \onehalfspacing
@@ -500,7 +503,7 @@
     \captionsetup*[figure]{labelsep=space}
 
     \DeclareCaptionLabelFormat{alg}{#2 #1}
-    \captionsetup*[algorithm]{name=algoritmas.,labelformat=alg,labelsep=space}
+    \captionsetup*[algorithm]{name=algoritmas,labelformat=alg,labelsep=period}
     \DeclareCaptionLabelFormat{listing}{#2 #1}
     \captionsetup*[lstlisting]{labelformat=listing, labelsep=space}
     \renewcommand\lstlistingname{pav.}
@@ -510,6 +513,7 @@
     \let\ftype@listings\ftype@figure
 }{%
     \captionsetup*[figure]{labelsep=period}
+    \captionsetup*[algorithm]{labelsep=period}
 }
 
 % Komandos, skirtos pateikti angliškus terminų vertimus
