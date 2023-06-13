@@ -14,7 +14,7 @@
 % Bakalauro baigiamojo darbo apiforminimas pagal Vilniaus universiteto
 % Matematikos ir informatikos fakulteto Programų sistemų katedros reikalavimus
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{VUMIFPSbakalaurinis}[2023/06/01 1.6 VU MIF SE bachelor thesis class]
+\ProvidesClass{VUMIFPSbakalaurinis}[2023/06/13 1.7 VU MIF SE bachelor's thesis class]
 \LoadClass[12pt, a4paper]{article}
 \RequirePackage{LTPlius}  % Nustatymų sulietuvinimas
 
