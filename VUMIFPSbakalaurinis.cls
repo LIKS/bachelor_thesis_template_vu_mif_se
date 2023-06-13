@@ -14,9 +14,21 @@
 % Bakalauro baigiamojo darbo apiforminimas pagal Vilniaus universiteto
 % Matematikos ir informatikos fakulteto Programų sistemų katedros reikalavimus
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{VUMIFPSbakalaurinis}[2023/06/01 1.6 VU MIF SE bachelor thesis class]
+\ProvidesClass{VUMIFPSbakalaurinis}[2023/06/13 1.7 VU MIF SE bachelor's thesis class]
 \LoadClass[12pt, a4paper]{article}
 \RequirePackage{LTPlius}  % Nustatymų sulietuvinimas
+
+% Darbo kalba gali būti anglų
+\DeclareOption{english}{%
+    \def\@ThesisEng{}%
+    \setmainlanguage{english}%
+    \setotherlanguage{lithuanian}%
+}
+\DeclareOption{signatureplaces}{%
+    \def\@addsignatureplaces%
+}
+\ProcessOptions\relax
+
 \RequirePackage{fontspec} % Šrifto pasirinkimui
 % Teksto šriftas bus Palemonas.
 % Naujos Palemono versijos talpinamos
@@ -69,7 +81,6 @@
 \newcommand{\reviewer}[1]{\def\@reviewer{#1}}
 \newcommand{\titleineng}[1]{\def\@titleineng{#1}}
 \newcommand{\secondauthor}[1]{\def\@secondauthor{#1}}
-\newcommand{\addsignatureplaces}{\def\@addsignatureplaces}
 
 % Pirma pastraipos eilutė atitraukiama 1 cm
 \setlength{\parindent}{1cm}
@@ -149,7 +160,7 @@
 % TODO: pašalinti csquotes.cfg failą 2025 metais, nes csquotes
 % paketas pridėjo lietuvišką kabučių stilių 2023-01-24, tad nebereikės
 % specialios konfigūracijos, kai nauja versija bus plačiai prieinama
-\RequirePackage[autostyle]{csquotes}
+\RequirePackage[autostyle=true]{csquotes}
 
 \RequirePackage[babel=true]{microtype}
 
@@ -161,7 +172,9 @@
     % teksto išdėstymas neturėtų smarkiai keistis
     \@ifundefined{@addsignatureplaces}{\qquad}{%
         \parbox[t]{2.5cm}{%
-            \makebox[2.5cm]{\raisebox{-0.9ex}{\scriptsize{(parašas)}}}%
+            \makebox[2.5cm]{\raisebox{-0.9ex}{\scriptsize
+                \@ifundefined{@ThesisEng}{(parašas)}{(signature)}%
+                }}%
         }}
 }
 
@@ -193,8 +206,13 @@
 
      \null\vfil
      \vskip 3cm
-     {\singlespacing \LARGE \textbf{\@title} \par}
-     {\singlespacing \Large \textbf{\textenglish{\@titleineng}} \par}%
+    \@ifundefined{@ThesisEng}{%
+        {\singlespacing \LARGE \textbf{\@title} \par}
+        {\singlespacing \Large \textbf{\textenglish{\@titleineng}} \par}%
+    }{%
+        {\singlespacing \LARGE \textbf{\@titleineng} \par}%
+        {\singlespacing \Large \textbf{\textlithuanian{\@title}} \par}
+    }%
      \vskip 0.8cm
      {\large \@papertype}%
   \end{center}
@@ -204,9 +222,15 @@
         \large
         \singlespacing
         {\begin{tabular}[t]{l l}%
-        \bigskip Atliko: &\; \@author \hfill \@signatureplace \\
-        \bigskip Darbo vadovas: &\; \@supervisor \hfill  \@signatureplace \\
-        Darbo recenzentas: &\; \@reviewer \hfill \@signatureplace
+        \@ifundefined{@ThesisEng}{%
+            \bigskip Atliko: &\; \@author \hfill \@signatureplace \\
+            \bigskip Darbo vadovas: &\; \@supervisor \hfill \@signatureplace \\
+            Darbo recenzentas: &\; \@reviewer \hfill \@signatureplace
+        }{%
+            \bigskip Author: &\; \@author \hfill \@signatureplace \\
+            \bigskip Supervisor: &\; \@supervisor \hfill \@signatureplace \\
+            Reviewer: &\; \@reviewer \hfill \@signatureplace
+        }%
         \end{tabular} \par}%
      \end{flushright}
   }{
@@ -215,10 +239,17 @@
         \large
         \singlespacing
         {\begin{tabular}[t]{l l}%
-        \bigskip Atliko: &\; \@author \hfill \@signatureplace \\
-        \bigskip &\; \@secondauthor \hfill \@signatureplace \\
-        \bigskip Darbo vadovas: &\; \@supervisor \hfill  \@signatureplace \\
-        Darbo recenzentas: &\; \@reviewer \hfill \@signatureplace
+        \@ifundefined{@ThesisEng}{%
+            \bigskip Atliko: &\; \@author \hfill \@signatureplace \\
+            \bigskip &\; \@secondauthor \hfill \@signatureplace \\
+            \bigskip Darbo vadovas: &\; \@supervisor \hfill \@signatureplace \\
+            Darbo recenzentas: &\; \@reviewer \hfill \@signatureplace
+        }{%
+            \bigskip Author: &\; \@author \hfill \@signatureplace \\
+            \bigskip &\; \@secondauthor \hfill \@signatureplace \\
+            \bigskip Supervisor: &\; \@supervisor \hfill \@signatureplace \\
+            Reviewer: &\; \@reviewer \hfill \@signatureplace
+        }%
         \end{tabular} \par}%
      \end{flushright}
   }
@@ -255,6 +286,7 @@
   \global\let\supervisor\relax
   \global\let\@signatureplace\relax
   \global\let\checkifdefined\relax
+  \global\let\@addsignatureplaces\relax
   \setcounter{footnote}{0}%
   % Nustatome dokumentui 1,5 tarpo tarp eilučių intervalą
   \onehalfspacing
@@ -321,10 +353,15 @@
 % Priedų formatavimas
 \renewcommand{\appendix}{%
     \@ifundefined{@firstappendix}{%
-        \newcounter{appendixcounter}%
-        \sectionnonum{Priedai}%
         \newcommand{\@firstappendix}{}%
-        \newcommand{\@appendix}{nr. \arabic{appendixcounter}}%
+        \newcounter{appendixcounter}%
+        \@ifundefined{@ThesisEng}{%
+            \sectionnonum{Priedai}%
+            \newcommand{\@appendix}{nr. \arabic{appendixcounter}}%
+        }{%
+            \sectionnonum{Appendixes}%
+            \newcommand{\@appendix}{\arabic{appendixcounter}}%
+        }%
     }{%
         \cleardoublepage%
     }%
@@ -333,8 +370,13 @@
 
 \def\@Appendix[#1]#2{%
     \refstepcounter{appendixcounter}%
-    \addcontentsline{toc}{subsection}%
-        {\arabic{appendixcounter} priedas.~#2}%
+    \@ifundefined{@ThesisEng}{%
+        \addcontentsline{toc}{subsection}%
+            {\arabic{appendixcounter} priedas.~#2}%
+    }{%
+        \addcontentsline{toc}{subsection}%
+            {\appendixname\ \arabic{appendixcounter}.~#2}%
+    }%
     {\large\bfseries\appendixname\ \@appendix\par
      #2\par}% \nohyphens\centering#2\par}%
     \sectionmark{#1}\vspace{\baselineskip}%
@@ -363,7 +405,7 @@
 % 2. Vietos, skiriamos dalies numeriui, plotis
 \renewcommand*\l@subsection{\@dottedtocline{2}{0.63cm}{0.87cm}}
 \renewcommand*\l@subsubsection{\@dottedtocline{3}{1.33cm}{1.22cm}}
-\renewcommand*\l@paragraph{\@dottedtocline{4}{1.5cm}{1.52cm}}
+\renewcommand*\l@paragraph{\@dottedtocline{4}{2.03cm}{1.52cm}}
 
 % Raktinių žodžių komandos
 \newcommand\keywords[1]{%
@@ -400,7 +442,8 @@
 \RequirePackage[%
     hidelinks,
     linktoc=all,
-    pdflang=lt
+    pdflang={\@ifundefined{@ThesisEng}{lt}{en-US}},
+    bookmarksnumbered=true,
 ]{hyperref}
 
 % Pataisymas, kad veiktų kompiliavimas su LuaLaTeX.
@@ -425,7 +468,7 @@
     \@ifundefined{@secondauthor}{
         \hypersetup{pdfauthor = {\@author}}
     }{
-        \hypersetup{pdfauthor = {\@author\ ir \@secondauthor}}
+        \hypersetup{pdfauthor = {\@author, \@secondauthor}}
     }
 }
 
@@ -440,12 +483,7 @@
 }
 
 % Algoritmai apjuosiami kraštine
-\RequirePackage[lined]{algorithm}
-
-\DeclareCaptionLabelFormat{alg}{#2 #1}
-\captionsetup[algorithm]{name=algoritmas.,labelformat=alg,labelsep=space}
-
-\RequirePackage{listings}
+\RequirePackage{algorithm}
 
 % Sutvarkome lstlistings aplinką:
 % 1. pakeičiame pavadinimą į pav. (neaišku, kaip kitaip pavadinti,
@@ -454,18 +492,29 @@
 % 3. apjuosiame kraštine
 % 4. numeruojame taip pat kaip ir paveiksliukus
 % https://tex.stackexchange.com/a/117538
-\DeclareCaptionLabelFormat{listing}{#2 #1}
-\captionsetup[lstlisting]{labelformat=listing, labelsep=space}
-\renewcommand\lstlistingname{pav.}
+\RequirePackage{listings}
 \lstset{
     captionpos=b,
     frame=single,
     breaklines=true
 }
-% https://tex.stackexchange.com/questions/462810/use-same-reference-count-for-lstlisting-and-figure-graphics
-\AtBeginDocument[A]{\let\c@lstlisting\c@figure}
-% % https://tex.stackexchange.com/questions/422131/how-to-use-the-same-numbering-counter-for-figures-tables-and-listings
-\let\ftype@listings\ftype@figure
+\@ifundefined{@ThesisEng}{%
+    % Teisingai formatuojame paveikslėlių antraštes.
+    \captionsetup*[figure]{labelsep=space}
+
+    \DeclareCaptionLabelFormat{alg}{#2 #1}
+    \captionsetup*[algorithm]{name=algoritmas,labelformat=alg,labelsep=period}
+    \DeclareCaptionLabelFormat{listing}{#2 #1}
+    \captionsetup*[lstlisting]{labelformat=listing, labelsep=space}
+    \renewcommand\lstlistingname{pav.}
+    % https://tex.stackexchange.com/questions/462810/use-same-reference-count-for-lstlisting-and-figure-graphics
+    \AtBeginDocument[A]{\let\c@lstlisting\c@figure}
+    % % https://tex.stackexchange.com/questions/422131/how-to-use-the-same-numbering-counter-for-figures-tables-and-listings
+    \let\ftype@listings\ftype@figure
+}{%
+    \captionsetup*[figure]{labelsep=period}
+    \captionsetup*[algorithm]{labelsep=period}
+}
 
 % Komandos, skirtos pateikti angliškus terminų vertimus
 % Be skliaustų.
