@@ -357,7 +357,7 @@
         \newcounter{appendixcounter}%
         \@ifundefined{@ThesisEng}{%
             \sectionnonum{Priedai}%
-            \newcommand{\@appendix}{\arabic{appendixcounter} priedas.}
+            \newcommand{\@appendix}{\arabic{appendixcounter} \appendixname.}
         }{%
             \sectionnonum{Appendixes}%
             \newcommand{\@appendix}{\arabic{appendixcounter}}%
