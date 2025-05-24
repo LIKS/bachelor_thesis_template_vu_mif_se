@@ -357,7 +357,7 @@
         \newcounter{appendixcounter}%
         \@ifundefined{@ThesisEng}{%
             \sectionnonum{Priedai}%
-            \newcommand{\@appendix}{nr. \arabic{appendixcounter}}%
+            \newcommand{\@appendix}{\arabic{appendixcounter} \appendixname.}
         }{%
             \sectionnonum{Appendixes}%
             \newcommand{\@appendix}{\arabic{appendixcounter}}%
@@ -377,7 +377,7 @@
         \addcontentsline{toc}{subsection}%
             {\appendixname\ \arabic{appendixcounter}.~#2}%
     }%
-    {\large\bfseries\appendixname\ \@appendix\par
+    {\large\bfseries \@appendix\ 
      #2\par}% \nohyphens\centering#2\par}%
     \sectionmark{#1}\vspace{\baselineskip}%
     \footnotesize%
